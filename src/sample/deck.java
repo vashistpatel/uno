@@ -4,9 +4,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class DECK extends Application {
+public class deck extends Application {
 
-    public static void DECK(String[] args) {
+    public static void deck(String[] args) {
         Application.launch(args);
     }
     @Override
@@ -26,7 +26,6 @@ public class DECK extends Application {
             }
         }
         ArrayList<String> playingCards = new ArrayList<String>(CARDS);
-        System.out.println(playingCards);
 
 
     }
