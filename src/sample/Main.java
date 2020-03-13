@@ -15,48 +15,25 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         ArrayList<String> CARDS = new ArrayList<String>();
-        System.out.println(CARDS);
-        CARDS.add("R_0");
-        CARDS.add("R_1");
-        CARDS.add("R_2");
-        CARDS.add("R_3");
-        CARDS.add("R_4");
-        CARDS.add("R_5");
-        CARDS.add("R_6");
-        CARDS.add("R_7");
-        CARDS.add("R_8");
-        CARDS.add("R_9");
-        CARDS.add("B_1");
-        CARDS.add("B_2");
-        CARDS.add("B_3");
-        CARDS.add("B_4");
-        CARDS.add("B_5");
-        CARDS.add("B_6");
-        CARDS.add("B_7");
-        CARDS.add("B_8");
-        CARDS.add("B_9");
-        CARDS.add("Y_1");
-        CARDS.add("Y_2");
-        CARDS.add("Y_3");
-        CARDS.add("Y_4");
-        CARDS.add("Y_5");
-        CARDS.add("Y_6");
-        CARDS.add("Y_7");
-        CARDS.add("Y_8");
-        CARDS.add("Y_9");
-        CARDS.add("G_1");
-        CARDS.add("G_2");
-        CARDS.add("G_3");
-        CARDS.add("G_4");
-        CARDS.add("G_5");
-        CARDS.add("G_6");
-        CARDS.add("G_7");
-        CARDS.add("G_8");
-        CARDS.add("G_9");
 
-        ArrayList<String> playingCards = new ArrayList<String>(CARDS); //initialize the working cards
+        char[] tempC = new char[4];//temp array
+        tempC[0] = 'R';
+        tempC[1] = 'Y';
+        tempC[2] = 'G';
+        tempC[3] = 'B';
+
+        //initializes new deck of cards
+        for(int i=0;i<4;i++){
+            for(int k =0;k<10;k++){
+                CARDS.add(tempC[i]+"_"+k);
+            }
+        }
+
+        ArrayList<String> playingCards = new ArrayList<String>(CARDS); //new list of cards that are being add
         Collections.shuffle(playingCards); //shuffles the cards
-        System.out.println(playingCards.get(0));
+        System.out.println(playingCards);
+
+        //how to set it up that each player has an hand.
     }
 
 

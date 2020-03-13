@@ -10,7 +10,7 @@ import java.util.Collections;
  * */
 public class deck {
 
-    public ArrayList<String> initalizeDeck(){
+    public static ArrayList<String> initalizeDeck(){
         /**/
         ArrayList<String> CARDS = new ArrayList<String>();
         char[] tempC = new char[4];
