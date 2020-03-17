@@ -10,8 +10,8 @@ public class deckPile {
     }
 
 
-    public ArrayList<String> initializePile(ArrayList<String> Deck, ArrayList<String> Pile){
+    /*public ArrayList<String> initializePile(ArrayList<String> Deck, ArrayList<String> Pile){
         Pile.add(deck.drawCard(Deck));
         return Pile;
-    }
+    }*/
 }

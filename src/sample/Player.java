@@ -3,23 +3,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
+    private static ArrayList<String> playerHand = new ArrayList<>();
+    private static ArrayList<String> playingcards = deck.initalizeDeck();
+    private static ArrayList<String> computerHand = new ArrayList<>();
 
+    //Initalize Player hand
     public static ArrayList<String> playerHand (){
-        ArrayList<String> playingcards = deck.initalizeDeck();
-        ArrayList<String> playerHand = new ArrayList<>();
-        ArrayList<String> computerHand = new ArrayList<>();
 
         for(int i = 0; i < 5; i++) {
-            playerHand.add(deck.drawCard(playingcards));
-            computerHand.add(deck.drawCard(playingcards));
+            playerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
         }
         return playerHand;
     }
 
+    //Initalize Computer Hand
+    public static ArrayList<String> computerHand (){
+
+        for(int i = 0; i < 5; i++) {
+            computerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
+        }
+        return computerHand;
+    }
+
+    //Playing cards
+    public static ArrayList<String> PlayingCards(){
+        return playingcards;
+    }
+
     public static void playerchoosecard () {
-//        Scanner input = new Scanner(System.in);
-//        System.out.println("Enter Index Number");
-//        String index_number = input.nextLine();
+      //  Scanner input = new Scanner(System.in);
+     //   System.out.println("Enter Index Number");
+    //    String index_number = input.nextLine();
         int index_number = 0;
 
         ArrayList<String> playerHand = playerHand();
