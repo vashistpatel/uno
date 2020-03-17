@@ -8,7 +8,7 @@ public class Player {
     private static ArrayList<String> computerHand = new ArrayList<>();
 
     //Initalize Player hand
-    public static ArrayList<String> playerHand (){
+    public static ArrayList<String> initializePlayerHand (){
 
         for(int i = 0; i < 5; i++) {
             playerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
@@ -17,7 +17,7 @@ public class Player {
     }
 
     //Initalize Computer Hand
-    public static ArrayList<String> computerHand (){
+    public static ArrayList<String> initializeComputerHand (){
 
         for(int i = 0; i < 5; i++) {
             computerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
@@ -25,6 +25,15 @@ public class Player {
         return computerHand;
     }
 
+    //Player Hand
+    public static ArrayList<String> playerHand(){
+        return playerHand;
+    }
+
+    //Computer Hand
+    public static ArrayList<String> computerHand(){
+        return computerHand;
+    }
     //Playing cards
     public static ArrayList<String> PlayingCards(){
         return playingcards;

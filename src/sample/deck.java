@@ -78,12 +78,8 @@ public  class deck {
 
 
 
-    public ArrayList<String> pileCard(ArrayList<String> pilesCard, ArrayList<String> playerCards){
 
-        return pilesCard;
-
-    }
-    public void pileCard(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
+    public void addToPile(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
         pCard.add(playerCards.get(x));
         playerCards.remove(x);
     }

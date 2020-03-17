@@ -5,13 +5,16 @@ import java.util.ArrayList;
 
 public class deckPile {
 
-    public void Pile(){
-        ArrayList<String> Pile = new ArrayList<>();
+    private static ArrayList<String> Pile = new ArrayList<>();
+
+    public static ArrayList<String> Pile(){
+        return Pile;
     }
 
-
-    /*public ArrayList<String> initializePile(ArrayList<String> Deck, ArrayList<String> Pile){
-        Pile.add(deck.drawCard(Deck));
+    public static ArrayList<String> initializePile (ArrayList<String> Deck, ArrayList<String> Pile, ArrayList<String> player1,
+                                            ArrayList<String> computer) {
+        Pile.add(deck.drawCard(Deck,player1,computer));
         return Pile;
-    }*/
+    }
+
 }
