@@ -1,14 +1,17 @@
 package sample;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
-    private static ArrayList<String> playerHand = new ArrayList<>();
-    private static ArrayList<String> playingcards = deck.initalizeDeck();
-    private static ArrayList<String> computerHand = new ArrayList<>();
+    public static ArrayList<String> playerHand = new ArrayList<>();
+
+    // playingcards is the main uno deck that players will pick up cards from
+    public static ArrayList<String> playingcards = deck.initalizeDeck();
+    public static ArrayList<String> computerHand = new ArrayList<>();
+    // currentCards is
+    public static ArrayList<String> currentCards = new ArrayList<>();
 
     //Initalize Player hand
-    public static ArrayList<String> initializePlayerHand (){
+    public static ArrayList<String> playerHand (){
 
         for(int i = 0; i < 5; i++) {
             playerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
@@ -17,7 +20,7 @@ public class Player {
     }
 
     //Initalize Computer Hand
-    public static ArrayList<String> initializeComputerHand (){
+    public static ArrayList<String> computerHand (){
 
         for(int i = 0; i < 5; i++) {
             computerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
@@ -25,31 +28,28 @@ public class Player {
         return computerHand;
     }
 
-    //Player Hand
-    public static ArrayList<String> playerHand(){
-        return playerHand;
-    }
-
-    //Computer Hand
-    public static ArrayList<String> computerHand(){
-        return computerHand;
-    }
     //Playing cards
     public static ArrayList<String> PlayingCards(){
         return playingcards;
     }
 
-    public static void playerchoosecard () {
-      //  Scanner input = new Scanner(System.in);
-     //   System.out.println("Enter Index Number");
-    //    String index_number = input.nextLine();
-        int index_number = 0;
+    public static ArrayList<String> playerChooseCard () {
+        // User choose which card to play
+        int index_number = 1;
 
-        ArrayList<String> playerHand = playerHand();
-        ArrayList<String> currentCard = new ArrayList<>();
-
-        currentCard.add(playerHand.get(index_number));
-        playerHand.remove(index_number);
+        String chosen_card = playerHand.get(index_number);
+        boolean validMove = true;
+        if (validMove) {
+            playCard(chosen_card);
+            return currentCards;
+        } else {
+            System.out.println("Invalid Move");
+        }
+        return null;
     }
 
+    public static void playCard(String Card) {
+        currentCards.add(Card);
+        playerHand.remove(Card);
+    }
 }
