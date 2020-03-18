@@ -10,18 +10,22 @@ public class rules {
         String t2 = deckPile.get(sizeOfDeck - 1);
         String[] topOfDeck = t2.split("_", 2);
         if (chosenCardSplit[0].equals(topOfDeck[0])) {
-            System.out.println("ARE YOU WORKING?1");
+            //System.out.println("ARE YOU WORKING?1");
             deckPile.add(chosenCard);
             playerhand.remove(index);
-            System.out.println(deckPile);
-            System.out.println(playerhand);
+            //System.out.println(deckPile);
+            //System.out.println(playerhand);
         } else if (chosenCardSplit[1].equals(topOfDeck[1])) {
-            System.out.println("ARE YOU WORKING2?");
+           // System.out.println("ARE YOU WORKING2?");
 
             deckPile.add(chosenCard);
             playerhand.remove(index);
+        }else {
+            Player.playerChooseCard(playerhand, deckPile);
+
+
         }
-        System.out.println("ARE YOU WORKING?3");
+       // System.out.println("ARE YOU WORKING?3");
 
     }
 }

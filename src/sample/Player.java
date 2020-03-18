@@ -42,19 +42,28 @@ public class Player {
         Scanner input = new Scanner(System.in);
         //System.out.println(deckPile.get(placement-1));
        // System.out.println(playerHand);
+        int take = 100;
         System.out.println("Enter Index Number");
         String index_number = input.nextLine();
         int index = Integer.parseInt(index_number);
-        String chosen_card = playerHand.get(index);;
-       // System.out.println(chosen_card);
-        boolean validMove = true;
-        System.out.println("working?");
-        rules.gameTurn(playerHand,chosen_card,deckPile,index);
-        System.out.println("working?");
-        //System.out.println("Invalid Move");
-        //  return playerChooseCard(playerHand,deckPile);
-        //return playerChooseCard(playerHand,deckPile);
+        if(index == take){
+            playerHand.add(deck.drawCard(Player.PlayingCards(),Player.playerHand,Player.computerHand));
+            System.out.println(playerHand);
+            System.out.println(deckPile);
+            playerChooseCard(playerHand,deckPile);
+        }else {
 
+            String chosen_card = playerHand.get(index);
+
+            // System.out.println(chosen_card);
+            boolean validMove = true;
+            //System.out.println("working?");
+            rules.gameTurn(playerHand, chosen_card, deckPile, index);
+            //System.out.println("working?");
+            //System.out.println("Invalid Move");
+            //  return playerChooseCard(playerHand,deckPile);
+            //return playerChooseCard(playerHand,deckPile);
+        }
     }
 
     public static void playCard(String Card) {
