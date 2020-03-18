@@ -16,7 +16,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //testing
 
 //        System.out.println(Player.PlayingCards());
         Player.playerHand();
@@ -26,52 +25,44 @@ public class Main extends Application {
         //Initalizes Deck
         ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
         Player.computerHand();
-       //System.out.println(Player.playerHand);
+        //System.out.println(Player.playerHand);
         //System.out.println(deckPile.Pile());
-        int chooseWhoGoesFirst = checkTurn();
+        int chooseWhoGoesFirst = rules.whoGoesFirst;
+        System.out.println(chooseWhoGoesFirst);
         while(Player.playerHand.size()>0|| Player.computerHand().size()>0){
             if(chooseWhoGoesFirst==1){
-                System.out.println("Pile: "+deckPile.Pile());
-                System.out.println("PlayerHand:"+Player.playerHand);
-                Player.playerChooseCard(Player.playerHand,mainPile);
-
-
-
+                System.out.println(chooseWhoGoesFirst);
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Player Hand: "+Player.playerHand);
+                Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile);
+                System.out.println("Deck: "+deckPile.Pile());
                 ///COmputer turn
-                System.out.println("Pile: "+deckPile.Pile());
-                System.out.println("Computer Hand: "+Player.computerHand);
-                Player.playerChooseCard(Player.computerHand,mainPile);
-
+                System.out.println("Computer Hand: " +Player.computerHand);
+                Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile);
+                System.out.println("Computer Hand: " +Player.computerHand);
+                System.out.println("Deck: "+deckPile.Pile());
 
             }else{
-                System.out.println("Pile: "+deckPile.Pile());
-                System.out.println("Computer Hand: "+Player.computerHand);
-                Player.playerChooseCard(Player.computerHand,mainPile);
-
-                System.out.println("Pile: "+deckPile.Pile());
-                System.out.println("PlayerHand:"+Player.playerHand);
-                Player.playerChooseCard(Player.playerHand,mainPile);
-
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Computer Hand: " +Player.computerHand);
+                Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile);
+                System.out.println("Computer Hand: " +Player.computerHand);
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Player Hand: "+Player.playerHand);
+                Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile);
+                System.out.println("Deck: "+deckPile.Pile());
             }
 
         }
-        Player.playerChooseCard(Player.playerHand,mainPile);
-        System.out.println(Player.playerHand);
-        System.out.println(mainPile);
-
-
 
         //how to set it up that each player has an hand.*/
+
     }
 
 
     public static void main(String[] args) {
         launch(args);
     }
-    public int checkTurn(){
-        Random rand = new Random();
-        int randomInt = rand.nextInt(2) + 1;
-        return randomInt;
-    }
+
 
 }

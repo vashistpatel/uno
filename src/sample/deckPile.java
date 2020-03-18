@@ -2,12 +2,12 @@ package sample;
 
 
 import java.util.ArrayList;
-import java.util.Stack;
+
 
 public class deckPile {
 
     private static ArrayList<String> Pile = new ArrayList<>();
-   // private static Stack<String> =new Stack<String>();
+
     public static ArrayList<String> Pile(){
         return Pile;
     }

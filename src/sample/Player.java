@@ -36,12 +36,10 @@ public class Player {
         return playingcards;
     }
 
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> deckPile) {
-        // User choose which card to play
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand,ArrayList<String> deckPile) {
         int placement = deckPile.size();
         Scanner input = new Scanner(System.in);
-        //System.out.println(deckPile.get(placement-1));
-       // System.out.println(playerHand);
+
         int take = 100;
         System.out.println("Enter Index Number");
         String index_number = input.nextLine();
@@ -50,15 +48,12 @@ public class Player {
             playerHand.add(deck.drawCard(Player.PlayingCards(),Player.playerHand,Player.computerHand));
             System.out.println(playerHand);
             System.out.println(deckPile);
-            playerChooseCard(playerHand,deckPile);
+            playerChooseCard(playerHand,computerHand,deckPile);
         }else {
 
             String chosen_card = playerHand.get(index);
 
-            // System.out.println(chosen_card);
-            boolean validMove = true;
-            //System.out.println("working?");
-            rules.gameTurn(playerHand, chosen_card, deckPile, index);
+            rules.gameTurn(playerHand,computerHand, chosen_card, deckPile, index);
             //System.out.println("working?");
             //System.out.println("Invalid Move");
             //  return playerChooseCard(playerHand,deckPile);
@@ -66,8 +61,5 @@ public class Player {
         }
     }
 
-    public static void playCard(String Card) {
-        currentCards.add(Card);
-        playerHand.remove(Card);
-    }
+
 }
