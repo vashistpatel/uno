@@ -79,7 +79,8 @@ public  class deck {
 
 
 
-    public void addToPile(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
+    public static void addToPile(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
+        System.out.println(playerCards.get(x) +"ss");
         pCard.add(playerCards.get(x));
         playerCards.remove(x);
     }

@@ -1,5 +1,7 @@
 package sample;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     public static ArrayList<String> playerHand = new ArrayList<>();
@@ -19,6 +21,7 @@ public class Player {
         return playerHand;
     }
 
+
     //Initalize Computer Hand
     public static ArrayList<String> computerHand (){
 
@@ -33,19 +36,25 @@ public class Player {
         return playingcards;
     }
 
-    public static ArrayList<String> playerChooseCard () {
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> deckPile) {
         // User choose which card to play
-        int index_number = 1;
-
-        String chosen_card = playerHand.get(index_number);
+        int placement = deckPile.size();
+        Scanner input = new Scanner(System.in);
+        //System.out.println(deckPile.get(placement-1));
+       // System.out.println(playerHand);
+        System.out.println("Enter Index Number");
+        String index_number = input.nextLine();
+        int index = Integer.parseInt(index_number);
+        String chosen_card = playerHand.get(index);;
+       // System.out.println(chosen_card);
         boolean validMove = true;
-        if (validMove) {
-            playCard(chosen_card);
-            return currentCards;
-        } else {
-            System.out.println("Invalid Move");
-        }
-        return null;
+        System.out.println("working?");
+        rules.gameTurn(playerHand,chosen_card,deckPile,index);
+        System.out.println("working?");
+        //System.out.println("Invalid Move");
+        //  return playerChooseCard(playerHand,deckPile);
+        //return playerChooseCard(playerHand,deckPile);
+
     }
 
     public static void playCard(String Card) {

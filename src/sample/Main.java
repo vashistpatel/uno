@@ -16,15 +16,22 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //testing
+
 //        System.out.println(Player.PlayingCards());
         System.out.println(Player.playerHand());
 //        System.out.println(Player.computerHand());
 //        System.out.println(Player.PlayingCards());
+        ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
+        System.out.println(mainPile);
         System.out.println("---------------------");
-        System.out.println(Player.playerChooseCard());
+
+        Player.playerChooseCard(Player.playerHand,mainPile);
+
+        System.out.println(mainPile);
         System.out.println(Player.playerHand);
 
-        //how to set it up that each player has an hand.
+
+        //how to set it up that each player has an hand.*/
     }
 
 
