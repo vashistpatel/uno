@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class rules {
     public static int whoGoesFirst = deck.checkTurn();
@@ -27,6 +28,22 @@ public class rules {
             deckPile.add(chosenCard);
             playerhand.remove(index);
             cardAction(playerhand,computerHand,chosenCard);
+        }  else if (chosenCardSplit[0].charAt(0) == 'M' ) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter Color to Switch to");
+            String newColor = input.nextLine();
+            newColor += "_ ";
+            if (chosenCardSplit[1].equals(13) ) {
+                deckPile.add(chosenCard);
+                deckPile.add(newColor);
+                playerhand.remove(index);
+                cardAction(playerhand, computerHand, chosenCard);
+            }else {
+                deckPile.add(chosenCard);
+                deckPile.add(newColor);
+                playerhand.remove(index);
+                cardAction(playerhand, computerHand, chosenCard);
+            }
         } else {
             Player.playerChooseCard(playerhand,computerHand, deckPile);
 
@@ -55,7 +72,11 @@ public class rules {
             }else if(charSplit[0].equals("12")){//+2
                 computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
                 computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
-            }else if(charSplit[0].equals("13")){//+4
+            }else if(charSplit[0].equals("13")){//+
+                computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
+                computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
+                computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
+                computerHand.add((deck.drawCard(Player.PlayingCards(),playerhand,computerHand)));
 
             }else if(charSplit[0].equals("14")){//Colour change
 
