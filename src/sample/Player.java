@@ -46,8 +46,8 @@ public class Player {
         int index = Integer.parseInt(index_number);
         if(index == take){
             playerHand.add(deck.drawCard(Player.PlayingCards(),Player.playerHand,Player.computerHand));
-            System.out.println(playerHand);
-            System.out.println(deckPile);
+            System.out.println("Current Hand: "+playerHand);
+            System.out.println("Pile: "+deckPile);
             playerChooseCard(playerHand,computerHand,deckPile);
         }else {
 
