@@ -1,10 +1,15 @@
 package sample;
-import java.lang.reflect.Array;
+
+import javafx.scene.image.ImageView;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
     public static ArrayList<String> playerHand = new ArrayList<>();
+    public static ArrayList<ImageView> player1Hand = new ArrayList<>();
+    public static ArrayList<ImageView> player2Hand = new ArrayList<>();
 
     // playingcards is the main uno deck that players will pick up cards from
     public static ArrayList<String> playingcards = deck.initalizeDeck();
@@ -14,14 +19,27 @@ public class Player {
 
     //Initalize Player hand
     public static ArrayList<String> playerHand (){
-
+        int x = 0;
         for(int i = 0; i < 5; i++) {
             playerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
         }
         return playerHand;
     }
 
+    public static void p1Hand (){
+        int x = 0;
+        for(int i = 0; i < 5; i++) {
+            player1Hand.add(new ImageView("/CARDS/"+playerHand.get(i)));
+            player1Hand.get(i).setFitHeight(120);
+            player1Hand.get(i).setFitWidth(85);
+            player1Hand.get(i).setX(x);
+            player1Hand.get(i).setY(300);
 
+
+            MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+            x+=100;
+        }
+    }
     //Initalize Computer Hand
     public static ArrayList<String> computerHand (){
 
@@ -29,6 +47,21 @@ public class Player {
             computerHand.add(deck.drawCard(playingcards,playerHand,computerHand));
         }
         return computerHand;
+    }
+
+    public static void p2Hand (){
+        int x = 0;
+        for(int i = 0; i < 5; i++) {
+
+            player2Hand.add(new ImageView("/CARDS/"+computerHand.get(i)));
+            player2Hand.get(i).setFitHeight(120);
+            player2Hand.get(i).setFitWidth(85);
+            player2Hand.get(i).setX(x);
+            player2Hand.get(i).setY(20);
+
+            MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+            x+=100;
+        }
     }
 
     //Playing cards
@@ -52,8 +85,8 @@ public class Player {
         }else {
 
             String chosen_card = playerHand.get(index);
-
             rules.gameTurn(playerHand,computerHand, chosen_card, deckPile, index);
+            
             //System.out.println("working?");
             //System.out.println("Invalid Move");
             //  return playerChooseCard(playerHand,deckPile);

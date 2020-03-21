@@ -1,7 +1,11 @@
+package sample;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,15 +14,21 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class MainScreen extends Application {
     Pane instructPane = new Pane();
-    Pane playPane = new Pane();
+    public static Pane playPane = new Pane();
     Pane scorePane = new Pane();
     Pane pane = new Pane();
+
     Button instructions = new Button("INSTRUCTIONS");
     Button play = new Button("PLAY");
     Button score = new Button("SCORE");
-    Image image = new Image("background.png");
+
+    Image image = new Image("CARDS/background.png");
+    Image back = new Image("CARDS/BACK.png");
+
     BackgroundImage bImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT , BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     Background background = new Background(bImage);
 
@@ -29,9 +39,25 @@ public class MainScreen extends Application {
         createScoreButton();
         createPlayButton();
 
-        play.setOnAction(event ->
-                stage.setScene(playScreen())
-        );
+        Thread game = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                gameplay();
+            }
+        });
+
+        play.setOnAction(event ->{
+            stage.setScene(playScreen());
+            ImageView pile = new ImageView(back);
+            pile.setFitHeight(120);
+            pile.setFitWidth(85);
+            pile.setX(image.getWidth()*.35);
+            pile.setY(image.getHeight()*.35);
+            playPane.getChildren().addAll(pile);
+
+            game.start();
+
+        });
 
         instructions.setOnAction(event -> {
             Text heading = new Text("How To Play");
@@ -51,6 +77,7 @@ public class MainScreen extends Application {
 
         stage.setScene(mainScreen());
         stage.show();
+
     }
     public Scene mainScreen(){
         pane.getChildren().addAll(play, instructions, score);
@@ -94,5 +121,71 @@ public class MainScreen extends Application {
         score.setLayoutY(image.getHeight() * .85);
         score.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;-fx-background-insets: 0;-fx-text-fill: white;");
         score.setMinSize(100, 50);
+    }
+    public void gameplay(){
+        Player.playerHand();
+
+        ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
+        Player.computerHand();
+
+        int chooseWhoGoesFirst = rules.whoGoesFirst;
+
+
+
+        while(Player.playerHand.size()>0|| Player.computerHand.size()>0){
+            Runnable updatePane = new Runnable() {
+                @Override
+                public void run() {
+                    deckPile.getLast();
+                }
+            };
+            Runnable updateP1 = new Runnable() {
+                @Override
+                public void run() {
+                    Player.p1Hand();
+                }
+            };
+            Runnable updateP2 = new Runnable() {
+                @Override
+                public void run() {
+                    Player.p2Hand();
+                }
+            };
+
+            if(chooseWhoGoesFirst==1){
+                Platform.runLater(updatePane);
+                Platform.runLater(updateP1);
+                Platform.runLater(updateP2);
+
+                System.out.println("-------Player1-----------");
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Player Hand: " + Player.playerHand);
+                Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile);
+                System.out.println("Deck: "+deckPile.Pile());
+
+                Platform.runLater(updatePane);
+                System.out.println("-------Player2-----------");
+                System.out.println("Computer Hand: " +Player.computerHand);
+                Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile);
+                System.out.println("Computer Hand: " +Player.computerHand);
+                System.out.println("Deck: "+deckPile.Pile());
+
+            }else{
+                Platform.runLater(updatePane);
+                System.out.println("-------Player2-----------");
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Computer Hand: " +Player.computerHand);
+                Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile);
+                System.out.println("Computer Hand: " +Player.computerHand);
+
+                Platform.runLater(updatePane);
+                System.out.println("-------Player1-----------");
+                System.out.println("Deck:"+deckPile.Pile());
+                System.out.println("Player Hand: "+Player.playerHand);
+                Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile);
+                System.out.println("Deck: "+deckPile.Pile());
+            }
+
+        }
     }
 }

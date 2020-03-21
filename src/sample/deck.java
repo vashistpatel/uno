@@ -67,13 +67,12 @@ public  class deck {
         for(int i =0;i<40;i++){
             //Create a function that puts both players cards into an array then checks that arary with new deck
             for(int j=0;j<player1.size();j++){
-                if(CARDS.get(i) ==totalDecks.get(j)){
+                if(CARDS.get(i) == totalDecks.get(j)){
                     CARDS.remove(i);
                 }
-
-
             }
         }
+
         for(int j=0;j<player2.size();j++){
             totalDecks.set(j,player2.get(j));
         }
