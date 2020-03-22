@@ -1,0 +1,40 @@
+
+
+Uno Game Statistics
+------------------------------------------
++2 Cards Played: 4
++4 Cards Played: 4
+Change Colour Cards Played: 4
+Block Cards Played: 4
+Reverse Cards Played: 4
+Total Cards Played: 60
+
+
+Uno Game Statistics
+------------------------------------------
++2 Cards Played: 4
++4 Cards Played: 4
+Change Colour Cards Played: 4
+Block Cards Played: 4
+Reverse Cards Played: 4
+Total Cards Played: 60
+
+
+Uno Game Statistics
+------------------------------------------
++2 Cards Played: 4
++4 Cards Played: 4
+Change Colour Cards Played: 4
+Block Cards Played: 4
+Reverse Cards Played: 4
+Total Cards Played: 60
+
+
+Uno Game Statistics
+------------------------------------------
++2 Cards Played: 4
++4 Cards Played: 4
+Change Colour Cards Played: 4
+Block Cards Played: 4
+Reverse Cards Played: 4
+Total Cards Played: 60
