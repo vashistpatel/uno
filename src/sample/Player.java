@@ -9,7 +9,7 @@ public class Player {
     public static ArrayList<String> computerHand = new ArrayList<>();
     public static ArrayList<ImageView> player1Hand = new ArrayList<>();
     public static ArrayList<ImageView> player2Hand = new ArrayList<>();
-    private static int x;
+    public static int x;
 
     // playingcards is the main uno deck that players will pick up cards from
     public static ArrayList<String> playingcards = deck.initalizeDeck();
@@ -38,6 +38,10 @@ public class Player {
             x+=100;
         }
     }
+
+
+
+
     //Initalize Computer Hand
     public static ArrayList<String> computerHand (){
         for(int i = 0; i < 5; i++) {
@@ -91,6 +95,7 @@ public class Player {
             x += 100;
 
             System.out.println(computerHand.size() + " This is the index " + player2Hand.size());
+            System.out.println("Computer hand: " + computerHand);
             MainScreen.playPane.getChildren().addAll(player2Hand.get(index));
 
         } else {
@@ -104,11 +109,12 @@ public class Player {
             x += 100;
 
             System.out.println(playerHand.size() + " THis is the index " + player1Hand.size());
+            System.out.println("Player hand: " + playerHand);
             MainScreen.playPane.getChildren().addAll(player1Hand.get(index));
 
         }
     }
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile) {
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile,int x) {
 
         Scanner input = new Scanner(System.in);
 
@@ -121,14 +127,17 @@ public class Player {
             playerHand.add(deck.drawCard(Player.PlayingCards(),Player.playerHand,Player.computerHand));
             System.out.println("Current Hand: "+playerHand);
             System.out.println("Pile: "+deckPile);
-            playerChooseCard(playerHand,computerHand,deckPile);
+            playerChooseCard(playerHand,computerHand,deckPile,x);
+        }else if(index >= playerHand.size()){
+            System.out.println("Invalid index");
+            playerChooseCard(playerHand,computerHand,deckPile,x);
         }else {
 
             String chosen_card = playerHand.get(index);
             if (MainScreen.turnChecker){
-                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index);
+                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index,x);
             } else {
-                rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index);
+                rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x);
             }
 
             

@@ -36,7 +36,7 @@ public class MainScreen extends Application {
     Background background = new Background(bImage);
 
     public static boolean turnChecker = true;
-    ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
+    static ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -131,7 +131,7 @@ public class MainScreen extends Application {
     }
 
     // Removes the cards once played from player 1's hand
-    Runnable updatePlayer1 = new Runnable() {
+    static Runnable updatePlayer1 = new Runnable() {
         @Override
         public void run() {
             rules.UpdatePlayer1();
@@ -139,14 +139,14 @@ public class MainScreen extends Application {
     };
 
     // Removes the cards once played from player 2's hand
-    Runnable updatePlayer2 = new Runnable() {
+    static Runnable updatePlayer2 = new Runnable() {
         @Override
         public void run() {
             rules.UpdatePlayer2();
         }
     };
     // Updates the played cards pile with the cards that are played
-    Runnable updatePane = new Runnable() {
+    static Runnable updatePane = new Runnable() {
         @Override
         public void run() {
             deckPile.getLast();
@@ -195,7 +195,7 @@ public class MainScreen extends Application {
             }
         }
     }
-    public void player1Move (){
+    public static void player1Move(){
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
@@ -203,12 +203,16 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+deckPile.Pile());
         System.out.println("Player Hand: "+Player.playerHand);
         pile.setDisable(false);
-        Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile);
+        Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile,1);
+
         Platform.runLater(updatePlayer1);
+        System.out.println("Player Hand: "+Player.playerHand);
+
         System.out.println("Deck: "+deckPile.Pile());
+
         pile.setDisable(true);
     }
-    public void player2Move (){
+    public static void player2Move(){
         turnChecker = false;
         pile.setDisable(true);
         Platform.runLater(updatePane);
@@ -216,7 +220,7 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+deckPile.Pile());
         System.out.println("Computer Hand: " +Player.computerHand);
         pile.setDisable(false);
-        Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile);
+        Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile,2);
         Platform.runLater(updatePlayer2);
         System.out.println("Computer Hand: " +Player.computerHand);
         pile.setDisable(true);
