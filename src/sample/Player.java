@@ -13,8 +13,6 @@ public class Player {
 
     // playingcards is the main uno deck that players will pick up cards from
     public static ArrayList<String> playingcards = deck.initalizeDeck();
-    // currentCards is
-    public static ArrayList<String> currentCards = new ArrayList<>();
 
     //Initalize Player hand
     public static ArrayList<String> playerHand (){
@@ -38,10 +36,6 @@ public class Player {
             x+=100;
         }
     }
-
-
-
-
     //Initalize Computer Hand
     public static ArrayList<String> computerHand (){
         for(int i = 0; i < 5; i++) {
@@ -63,20 +57,6 @@ public class Player {
             x+=100;
         }
     }
-
-    public static void updateP2Hand (){
-        x = 0;
-        for(int i = 0; i < 5; i++) {
-            player2Hand.add(new ImageView("/CARDS/"+computerHand.get(i)));
-            player2Hand.get(i).setFitHeight(120);
-            player2Hand.get(i).setFitWidth(85);
-            player2Hand.get(i).setX(x);
-            player2Hand.get(i).setY(20);
-
-            MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
-            x+=100;
-        }
-    }
     //Playing cards
     public static ArrayList<String> PlayingCards(){
         return playingcards;
@@ -84,69 +64,57 @@ public class Player {
 
 
     public static void DrawCard(boolean turnChecker) {
-        if (turnChecker == false) {
-            computerHand.add(deck.drawCard(playingcards, playerHand, computerHand));
-            int index = computerHand.size() - 1;
-            player2Hand.add(new ImageView("/CARDS/" + computerHand.get(index)));
-            player2Hand.get(index).setFitHeight(120);
-            player2Hand.get(index).setFitWidth(85);
-            player2Hand.get(index).setX(x);
-            player2Hand.get(index).setY(20);
-            x += 100;
+        try {
+            if (turnChecker == false) {
+                x += 100;
+                computerHand.add(deck.drawCard(playingcards, playerHand, computerHand));
+                player2Hand.add(new ImageView("/CARDS/" + computerHand.get(computerHand.size() - 1)));
+                player2Hand.get(computerHand.size() - 1).setFitHeight(120);
+                player2Hand.get(computerHand.size() - 1).setFitWidth(85);
+                player2Hand.get(computerHand.size() - 1).setX(x);
+                player2Hand.get(computerHand.size() - 1).setY(20);
 
-            System.out.println(computerHand.size() + " This is the index " + player2Hand.size());
-            System.out.println("Computer hand: " + computerHand);
-            MainScreen.playPane.getChildren().addAll(player2Hand.get(index));
+                System.out.println(computerHand.size() + " This is the index " + player2Hand.size());
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(computerHand.size() - 1));
+                MainScreen.UpdateAfterDrawCardP2();
 
-        } else {
-            playerHand.add(deck.drawCard(playingcards, playerHand, computerHand));
-            int index = playerHand.size() - 1;
-            player1Hand.add(new ImageView("/CARDS/" + playerHand.get(index)));
-            player1Hand.get(index).setFitHeight(120);
-            player1Hand.get(index).setFitWidth(85);
-            player1Hand.get(index).setX(x);
-            player1Hand.get(index).setY(300);
-            x += 100;
+            } else {
 
-            System.out.println(playerHand.size() + " THis is the index " + player1Hand.size());
-            System.out.println("Player hand: " + playerHand);
-            MainScreen.playPane.getChildren().addAll(player1Hand.get(index));
+                x += 100;
+                playerHand.add(deck.drawCard(playingcards, playerHand, computerHand));
+                player1Hand.add(new ImageView("/CARDS/" + playerHand.get(playerHand.size() - 1)));
+                player1Hand.get(playerHand.size() - 1).setFitHeight(120);
+                player1Hand.get(playerHand.size() - 1).setFitWidth(85);
+                player1Hand.get(playerHand.size() - 1).setX(x);
+                player1Hand.get(playerHand.size() - 1).setY(300);
 
-        }
+                System.out.println(playerHand.size() + " THis is the index " + player1Hand.size());
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(playerHand.size() - 1));
+                MainScreen.UpdateAfterDrawCardP1();
+            }
+        }catch(Exception exception){}
     }
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile,int x) {
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x) {
 
         Scanner input = new Scanner(System.in);
-
-        int take = 100;
         System.out.println("Enter Index Number");
         String index_number = input.nextLine();
         int index = Integer.parseInt(index_number);
 
-        if(index == take){
-            playerHand.add(deck.drawCard(Player.PlayingCards(),Player.playerHand,Player.computerHand));
-            System.out.println("Current Hand: "+playerHand);
-            System.out.println("Pile: "+deckPile);
-            playerChooseCard(playerHand,computerHand,deckPile,x);
-        }else if(index >= playerHand.size()){
+
+        if(index >= playerHand.size()){
             System.out.println("Invalid index");
-            playerChooseCard(playerHand,computerHand,deckPile,x);
+            playerChooseCard(playerHand,computerHand,deckPile, x);
         }else {
 
             String chosen_card = playerHand.get(index);
-            if (MainScreen.turnChecker){
-                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index,x);
-            } else {
+            if (MainScreen.turnChecker==true){
                 rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x);
+            } else {
+                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x);
             }
 
-            
-            //System.out.println("working?");
-            //System.out.println("Invalid Move");
-            //  return playerChooseCard(playerHand,deckPile);
-            //return playerChooseCard(playerHand,deckPile);
         }
     }
-
 
 }

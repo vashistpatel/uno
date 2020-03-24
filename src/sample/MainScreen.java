@@ -2,12 +2,10 @@ package sample;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -36,7 +34,8 @@ public class MainScreen extends Application {
     Background background = new Background(bImage);
 
     public static boolean turnChecker = true;
-    static ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(),deckPile.Pile(),Player.playerHand,Player.computerHand);
+    static ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(), deckPile.Pile(),Player.playerHand,Player.computerHand);
+    public static int clickCount = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -131,7 +130,19 @@ public class MainScreen extends Application {
     }
 
     // Removes the cards once played from player 1's hand
-    static Runnable updatePlayer1 = new Runnable() {
+    public static Runnable updatePlayer1withoutRemove = new Runnable() {
+        @Override
+        public void run() {
+            rules.updatePlayer1();
+        }
+    };
+    public static Runnable updatePlayer2withoutRemove = new Runnable() {
+        @Override
+        public void run() {
+            rules.updatePlayer2();
+        }
+    };
+    public static Runnable updatePlayer1 = new Runnable() {
         @Override
         public void run() {
             rules.UpdatePlayer1();
@@ -139,7 +150,7 @@ public class MainScreen extends Application {
     };
 
     // Removes the cards once played from player 2's hand
-    static Runnable updatePlayer2 = new Runnable() {
+    public static Runnable updatePlayer2 = new Runnable() {
         @Override
         public void run() {
             rules.UpdatePlayer2();
@@ -152,7 +163,50 @@ public class MainScreen extends Application {
             deckPile.getLast();
         }
     };
+    public static Runnable add4 = new Runnable() {
+        @Override
+        public void run() {
+            rules.add4ToHand(Player.playerHand, Player.computerHand);
+        }
+    };
+    public static void callAdd4(){
+        Platform.runLater(add4);
+    }
 
+    public static Runnable add2 = new Runnable() {
+        @Override
+        public void run() {
+                Player.DrawCard(true);
+                rules.updatePlayer1();
+        }
+    };
+    public static Runnable add1 = new Runnable() {
+        @Override
+        public void run() {
+            Player.DrawCard(true);
+            rules.updatePlayer1();
+
+        }
+    };
+
+
+
+    public static Runnable cp2add2 = new Runnable() {
+        @Override
+        public void run() {
+            Player.DrawCard(false);
+            rules.updatePlayer2();
+        }
+    };
+    public static Runnable cp2add1 = new Runnable() {
+        @Override
+        public void run() {
+            Player.DrawCard(false);
+            rules.updatePlayer2();
+
+
+        }
+    };
     // Outputs player 1's initial hand
     Runnable updateP1 = new Runnable() {
         @Override
@@ -160,13 +214,6 @@ public class MainScreen extends Application {
             Player.p1Hand();
         }
     };
-    public static Runnable add4 = new Runnable() {
-        @Override
-        public void run() {
-            rules.add4ToHand(Player.playerHand, Player.computerHand);
-        }
-    };
-
 
     // Output's player 2's initial hand
     Runnable updateP2 = new Runnable() {
@@ -184,7 +231,9 @@ public class MainScreen extends Application {
         Platform.runLater(updateP1);
         Platform.runLater(updateP2);
 
-        pile.setOnMouseClicked(event -> {Player.DrawCard(turnChecker);});
+        pile.setOnMouseClicked(event -> {
+                Player.DrawCard(turnChecker);
+        });
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(chooseWhoGoesFirst==1){
                 player1Move();
@@ -195,29 +244,53 @@ public class MainScreen extends Application {
             }
         }
     }
+    public static void plus2(){
+        Platform.runLater(add2);
+
+    }
+
+    public static void plus1(){
+        Platform.runLater(add1);
+
+    }
+    public static void cpPlus2(){
+        Platform.runLater(cp2add2);
+
+    }
+
+    public static void cpPlus1(){
+        Platform.runLater(cp2add1);
+
+    }
+    public static void UpdateAfterDrawCardP1(){
+        Platform.runLater(updatePlayer1withoutRemove);
+    }
+    public static void UpdateAfterDrawCardP2(){
+        Platform.runLater(updatePlayer2withoutRemove);
+    }
     public static void player1Move(){
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
+
         System.out.println("-------Player1-----------");
-        System.out.println("Deck:"+deckPile.Pile());
+        System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Player Hand: "+Player.playerHand);
         pile.setDisable(false);
         Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile,1);
-
         Platform.runLater(updatePlayer1);
         System.out.println("Player Hand: "+Player.playerHand);
-
-        System.out.println("Deck: "+deckPile.Pile());
-
+        System.out.println("Deck: "+ deckPile.Pile());
         pile.setDisable(true);
     }
+
     public static void player2Move(){
         turnChecker = false;
         pile.setDisable(true);
+
         Platform.runLater(updatePane);
         System.out.println("-------Player2-----------");
-        System.out.println("Deck:"+deckPile.Pile());
+        System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Computer Hand: " +Player.computerHand);
         pile.setDisable(false);
         Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile,2);

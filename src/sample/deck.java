@@ -50,12 +50,34 @@ public  class deck {
         if(s.size()==0){
             upDateDeck(s,player1,player2);
         }else{
+            //10-12,M OR 13-14
             card = s.get(0);
             s.remove(0);
         }
         return card;
     }
+    public static String deckDrawCard(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
+        System.out.println("Old Deck");
+        System.out.println(s);
+        String tempCard = s.get(0);
+        String[] cardSplit =  tempCard.split("_",2);
+        String[] charSplit = cardSplit[1].split("\\.",2);
+        int result = Integer.parseInt(charSplit[0]);
+        int i =0;
+        while(cardSplit[0].equals("M")||result>9){
+            i++;
+            tempCard = s.get(i);
+            cardSplit =  tempCard.split("_",2);
+            charSplit = cardSplit[1].split("\\.",2);
+            result = Integer.parseInt(charSplit[0]);
+        }
+        String card =s.get(i);
+        System.out.println("New Deck");
+        System.out.println(s);
 
+        s.remove(i);
+        return card;
+    }
 
     public static String upDateDeck(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         ArrayList<String> CARDS = new ArrayList<String>();
@@ -82,8 +104,6 @@ public  class deck {
                 if(CARDS.get(i) ==totalDecks.get(j)){
                     CARDS.remove(i);
                 }
-
-
             }
         }
         return drawCard(CARDS,player1,player2);

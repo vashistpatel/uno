@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
 
 
@@ -29,7 +30,8 @@ public class deckPile {
 
     public static ArrayList<String> initializePile (ArrayList<String> Deck, ArrayList<String> Pile, ArrayList<String> player1,
                                             ArrayList<String> computer) {
-        Pile.add(deck.drawCard(Deck,player1,computer));
+
+        Pile.add(deck.deckDrawCard(Deck,player1,computer));
         return Pile;
     }
 
