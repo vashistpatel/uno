@@ -163,50 +163,28 @@ public class MainScreen extends Application {
             deckPile.getLast();
         }
     };
-    public static Runnable add4 = new Runnable() {
-        @Override
-        public void run() {
-            rules.add4ToHand(Player.playerHand, Player.computerHand);
-        }
-    };
-    public static void callAdd4(){
-        Platform.runLater(add4);
-    }
 
-    public static Runnable add2 = new Runnable() {
+
+    public static Runnable add2ToPlayer1 = new Runnable() {
         @Override
         public void run() {
+            for(int i=0;i<2;i++) {
                 Player.DrawCard(true);
                 rules.updatePlayer1();
+            }
         }
     };
-    public static Runnable add1 = new Runnable() {
+
+    public static Runnable add2ToPlayer2 = new Runnable() {
         @Override
         public void run() {
-            Player.DrawCard(true);
-            rules.updatePlayer1();
-
+            for(int i =0;i<2;i++) {
+                Player.DrawCard(false);
+                rules.updatePlayer2();
+            }
         }
     };
 
-
-
-    public static Runnable cp2add2 = new Runnable() {
-        @Override
-        public void run() {
-            Player.DrawCard(false);
-            rules.updatePlayer2();
-        }
-    };
-    public static Runnable cp2add1 = new Runnable() {
-        @Override
-        public void run() {
-            Player.DrawCard(false);
-            rules.updatePlayer2();
-
-
-        }
-    };
     // Outputs player 1's initial hand
     Runnable updateP1 = new Runnable() {
         @Override
@@ -244,24 +222,18 @@ public class MainScreen extends Application {
             }
         }
     }
-    public static void plus2(){
-        Platform.runLater(add2);
+    public static void plus2CardsP1(){
+        Platform.runLater(add2ToPlayer1);
 
     }
 
-    public static void plus1(){
-        Platform.runLater(add1);
 
-    }
-    public static void cpPlus2(){
-        Platform.runLater(cp2add2);
+    public static void plus2CardsP2(){
+        Platform.runLater(add2ToPlayer2);
 
     }
 
-    public static void cpPlus1(){
-        Platform.runLater(cp2add1);
 
-    }
     public static void UpdateAfterDrawCardP1(){
         Platform.runLater(updatePlayer1withoutRemove);
     }
@@ -269,6 +241,7 @@ public class MainScreen extends Application {
         Platform.runLater(updatePlayer2withoutRemove);
     }
     public static void player1Move(){
+        UpdateAfterDrawCardP1();
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
@@ -285,6 +258,7 @@ public class MainScreen extends Application {
     }
 
     public static void player2Move(){
+        UpdateAfterDrawCardP2();
         turnChecker = false;
         pile.setDisable(true);
 

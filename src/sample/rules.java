@@ -19,67 +19,132 @@ public class rules {
         return whoGoesFirst;
     }
     public static void UpdatePlayer1(){
+        if(Player.playerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.player1Hand.remove(removal);
+
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i,new ImageView("/CARDS/"+Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x+=50;
+            }
+        }else{
 
         MainScreen.playPane.getChildren().removeAll(player1Hand);
         Player.player1Hand.remove(removal);
 
         Player.x = 0;
         for(int i = 0; i < Player.playerHand.size(); i++) {
-            player1Hand.set(i,new ImageView("/CARDS/"+Player.playerHand.get(i)));
+            player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
             player1Hand.get(i).setFitHeight(120);
             player1Hand.get(i).setFitWidth(85);
             player1Hand.get(i).setX(Player.x);
             player1Hand.get(i).setY(300);
 
             MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
-            Player.x+=100;
+            Player.x += 100;
+        }
         }
 
     }
-    public static void updatePlayer1(){
+    public static void updatePlayer1(){//Without the .remove function
+        if(Player.playerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x += 50;
+
+
+        }
+        }else{
 
         MainScreen.playPane.getChildren().removeAll(player1Hand);
         Player.x = 0;
         for(int i = 0; i < Player.playerHand.size(); i++) {
-            player1Hand.set(i,new ImageView("/CARDS/"+Player.playerHand.get(i)));
+            player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
             player1Hand.get(i).setFitHeight(120);
             player1Hand.get(i).setFitWidth(85);
             player1Hand.get(i).setX(Player.x);
             player1Hand.get(i).setY(300);
 
             MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
-            Player.x+=100;
+            Player.x += 100;
+        }
         }
 
     }
     public static void UpdatePlayer2(){
-        MainScreen.playPane.getChildren().removeAll(player2Hand);
-        player2Hand.remove(removal);
-        Player.x = 0;
-        for(int i = 0; i < Player.computerHand.size(); i++) {
-            player2Hand.set(i,new ImageView("/CARDS/"+Player.computerHand.get(i)));
-            player2Hand.get(i).setFitHeight(120);
-            player2Hand.get(i).setFitWidth(85);
-            player2Hand.get(i).setX(Player.x);
-            player2Hand.get(i).setY(20);
+        if(Player.computerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player2Hand);
+            player2Hand.remove(removal);
+            Player.x = 0;
+            for (int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
 
-            MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
-            Player.x+=100;
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x += 50;
+        }
+        }else {
+
+
+            MainScreen.playPane.getChildren().removeAll(player2Hand);
+            player2Hand.remove(removal);
+            Player.x = 0;
+            for (int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
+
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x += 100;
+            }
         }
 
     }
-    public static void updatePlayer2(){
+    public static void updatePlayer2(){//Without the .remove function
         MainScreen.playPane.getChildren().removeAll(player2Hand);
         Player.x = 0;
+        if(Player.computerHand.size()>7){
+            for(int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i,new ImageView("/CARDS/"+Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
+
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x+=50;
+            }
+        }else{
         for(int i = 0; i < Player.computerHand.size(); i++) {
-            player2Hand.set(i,new ImageView("/CARDS/"+Player.computerHand.get(i)));
+            player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
             player2Hand.get(i).setFitHeight(120);
             player2Hand.get(i).setFitWidth(85);
             player2Hand.get(i).setX(Player.x);
             player2Hand.get(i).setY(20);
 
             MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
-            Player.x+=100;
+            Player.x += 100;
+        }
         }
 
     }
@@ -109,6 +174,16 @@ public class rules {
                 int size = deckPile.size()-2;
                 removal = index;
                 colourChange(newColor,deckPile,size);
+                if(playerVal==1){
+                    for(int i =0;i<2;i++){
+                        MainScreen.plus2CardsP2();
+                    }
+
+                }else{
+                    for(int i =0;i<2;i++){
+                        MainScreen.plus2CardsP1();
+                    }
+                }
             }else if(charSplit[0].equals("14")) {
                 System.out.println("CC");
                 deckPile.add(chosenCard);
@@ -173,35 +248,25 @@ public class rules {
 
             }else if(charSplit[0].equals("12")){//+2
                 if(playerVal==1){
-                    MainScreen.plus2();
-                    MainScreen.plus1();
+                    MainScreen.plus2CardsP2();
 
                 }else{
-                    MainScreen.cpPlus1();
-                    MainScreen.cpPlus2();
+                    MainScreen.plus2CardsP1();
 
                 }
 
+            }else if(charSplit[0].equals("13")){
+                if (playerVal == 1){
+                    MainScreen.plus2CardsP2();
+                }else{
+                    MainScreen.plus2CardsP1();
+                }
             }
 
         }
 
     }
 
-    public static void add4ToHand (ArrayList<String> playerhand,ArrayList<String> computerHand) {
-        if (MainScreen.turnChecker == false) {
-            for (int i = 0; i < 4; i++) {
-                computerHand.add((deck.drawCard(Player.PlayingCards(), playerhand, computerHand)));
-                Player.DrawCard(MainScreen.turnChecker);
-            }
-        } else {
-            for (int i = 0; i < 4; i++) {
-                playerhand.add((deck.drawCard(Player.PlayingCards(), playerhand, computerHand)));
-                Player.DrawCard(MainScreen.turnChecker);
-            }
-        }
-
-    }
 
 }
 
