@@ -2,8 +2,10 @@ package sample;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -14,7 +16,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainScreen extends Application {
     Pane instructPane = new Pane();
@@ -25,6 +30,7 @@ public class MainScreen extends Application {
     Button instructions = new Button("INSTRUCTIONS");
     Button play = new Button("PLAY");
     Button score = new Button("SCORE");
+    Button back_button = new Button("BACK");
 
     Image image = new Image("CARDS/background.png");
     static Image back = new Image("CARDS/BACK.png");
@@ -43,6 +49,7 @@ public class MainScreen extends Application {
         createInstructButton();
         createScoreButton();
         createPlayButton();
+
 
         Thread game = new Thread(new Runnable() {
             @Override
@@ -76,9 +83,10 @@ public class MainScreen extends Application {
             stage.setScene(instructScreen());
         });
 
-        score.setOnAction(event ->
-                stage.setScene(scoreScreen())
-        );
+        score.setOnAction(event -> {
+            stage.setScene(scoreScreen());
+
+        });
 
         stage.setScene(mainScreen());
         stage.show();
@@ -103,10 +111,37 @@ public class MainScreen extends Application {
         createPlayButton();
         return instructScene;
     }
-    public Scene scoreScreen(){
-        scorePane.setBackground(background);
+    public Scene scoreScreen() {
+        scorePane.setBackground(new Background( new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        // Score Output (Using Labels)
+        Label title_label = new Label("Score");
+        title_label.setTextFill(Color.WHITE);
+        title_label.setFont(new Font("Arial",30));
+        title_label.setTranslateX(350);
+
+        // Create a ArrayList that will store the data from the file.
+        List<String> stats_array = new ArrayList<>();
+        stats_array = FileIO.readFile(FileIO.filename_gameStats);
+        int temp = 25;
+        for (int i=0;i<stats_array.size(); i++) {
+            Label label = new Label(stats_array.get(i));
+            label.setText(stats_array.get(i));
+            label.setTextFill(Color.WHITE);
+            label.setFont(new Font("Arial",25));
+            label.setTranslateX(225);
+            label.setTranslateY(temp);
+            temp += 25;
+            scorePane.getChildren().addAll(label);
+        }
+
+        createBackButton();
+        scorePane.getChildren().add(back_button);
+
+        // Add label to scorePane
+        scorePane.getChildren().add(title_label);
+
         Scene scoreScene = new Scene(scorePane ,image.getWidth(),image.getHeight());
-        createPlayButton();
         return scoreScene;
     }
 
@@ -128,6 +163,13 @@ public class MainScreen extends Application {
         score.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;-fx-background-insets: 0;-fx-text-fill: white;");
         score.setMinSize(100, 50);
     }
+    public void createBackButton() {
+        back_button.setLayoutX(image.getWidth() * .45);
+        back_button.setLayoutY(image.getHeight() * .85);
+        back_button.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;-fx-background-insets: 0;-fx-text-fill: white;");
+        back_button.setMinSize(100, 50);
+    }
+
 
     // Removes the cards once played from player 1's hand
     public static Runnable updatePlayer1withoutRemove = new Runnable() {
@@ -230,7 +272,6 @@ public class MainScreen extends Application {
 
     public static void plus2CardsP2(){
         Platform.runLater(add2ToPlayer2);
-
     }
 
 
@@ -257,7 +298,7 @@ public class MainScreen extends Application {
         pile.setDisable(true);
     }
 
-    public static void player2Move(){
+    public static void player2Move() {
         UpdateAfterDrawCardP2();
         turnChecker = false;
         pile.setDisable(true);
