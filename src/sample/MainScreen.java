@@ -67,8 +67,6 @@ public class MainScreen extends Application {
             pile.setY(image.getHeight()*.35);
             playPane.getChildren().addAll(pile);
 
-            TimeDisplay.TimeDisplay2();
-
             game.start();
         });
 
@@ -272,8 +270,14 @@ public class MainScreen extends Application {
     public static void UpdateAfterDrawCardP2(){
         Platform.runLater(updatePlayer2withoutRemove);
     }
+
     public static void player1Move(){
+        timer newTime = new timer(1);
+        Thread newTimeThread = new Thread(newTime);
+
+
         UpdateAfterDrawCardP1();
+        newTimeThread.start();
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
@@ -282,7 +286,7 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Player Hand: "+Player.playerHand);
         pile.setDisable(false);
-        Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile,1);
+        Player.playerChooseCard(Player.playerHand,Player.computerHand,mainPile,1,newTime);
         Platform.runLater(updatePlayer1);
         System.out.println("Player Hand: "+Player.playerHand);
         System.out.println("Deck: "+ deckPile.Pile());
@@ -290,7 +294,11 @@ public class MainScreen extends Application {
     }
 
     public static void player2Move() {
+        timer newTime2 = new timer(2);
+        Thread newTime2Thread = new Thread(newTime2);
+
         UpdateAfterDrawCardP2();
+        newTime2Thread.start();
         turnChecker = false;
         pile.setDisable(true);
 
@@ -299,9 +307,60 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Computer Hand: " +Player.computerHand);
         pile.setDisable(false);
-        Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile,2);
+        Player.playerChooseCard(Player.computerHand,Player.playerHand,mainPile,2,newTime2);
         Platform.runLater(updatePlayer2);
         System.out.println("Computer Hand: " +Player.computerHand);
         pile.setDisable(true);
+    }
+    public static Runnable callTD = new Runnable() {
+        @Override
+        public void run() {
+            TimeDisplay.TimeDisplay2(timer.secs);
+        }
+    };
+
+    public static class timer implements Runnable{
+
+        private int playerVal;
+        int timeLimit = 20;
+        private static volatile int secs = 1;
+
+        public timer(int playerVal){
+            this.playerVal = playerVal;
+        }
+
+        public void run() {
+
+            while(secs<=timeLimit){
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {e.printStackTrace();}
+
+                Platform.runLater(callTD);
+                secs++;
+
+                if(secs==(timeLimit+1)){
+                    if(playerVal==1){
+                        secs = 0;
+                        Player.DrawCard(true);
+                        UpdateAfterDrawCardP1();
+                        MainScreen.player2Move();
+                    }else if(playerVal==2){
+                        secs = 0;
+                        Player.DrawCard(false);
+                        UpdateAfterDrawCardP2();
+                        MainScreen.player1Move();
+                    }
+                }
+
+            }
+            secs = 0;
+
+        }
+        public void stop(){
+            secs = (timeLimit+1);
+        }
+
     }
 }

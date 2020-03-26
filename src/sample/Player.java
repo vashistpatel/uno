@@ -94,7 +94,7 @@ public class Player {
             }
         }catch(Exception exception){}
     }
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x) {
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x,MainScreen.timer timmer) {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter Index Number");
@@ -104,14 +104,14 @@ public class Player {
 
         if(index >= playerHand.size()){
             System.out.println("Invalid index");
-            playerChooseCard(playerHand,computerHand,deckPile, x);
+            playerChooseCard(playerHand,computerHand,deckPile, x,timmer);
         }else {
 
             String chosen_card = playerHand.get(index);
             if (MainScreen.turnChecker==true){
-                rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x);
+                rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x,timmer);
             } else {
-                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x);
+                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x,timmer);
             }
 
         }

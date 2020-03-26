@@ -8,20 +8,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TimeDisplay {
-    public static void TimeDisplay2()
+    static Stage subStage = new Stage();
+    public static void TimeDisplay2(int i)
     {
-        Stage subStage = new Stage();
+
 
         subStage.setTitle("New Stage");
-//        Stage subStage = new Stage();
-//        subStage.setTitle("New Stage");
+
 
         FlowPane root = new FlowPane();
         root.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(root, 300, 200);
+        subStage.setX(1225);
+        subStage.setY(200);
+        Scene scene = new Scene(root, 100, 100);
 
-
-        int i = 99;
         Text t = new Text();
         t.setText(Integer.toString(i));
         t.setX(50);

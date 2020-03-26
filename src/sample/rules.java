@@ -148,8 +148,8 @@ public class rules {
         }
 
     }
-    public static void gameTurn(ArrayList<String> playerhand,ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
-                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile,int index,int playerVal) {
+    public static void gameTurn(ArrayList<String> playerhand, ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
+                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, MainScreen.timer timmmer) {
         String[] chosenCardSplit = chosenCard.split("_", 2);
         String[] charSplit = chosenCardSplit[1].split("\\.",2);
         int sizeOfDeck = deckPile.size();
@@ -157,12 +157,14 @@ public class rules {
         String[] topOfDeck = t2.split("_", 2);
 
         if (chosenCardSplit[0].equals(topOfDeck[0]) || chosenCardSplit[1].equals(topOfDeck[1])) {
+            timmmer.stop();
             deckPile.add(chosenCard);
             playerhand.remove(index);
             removal = index;
             cardAction(playerhand,computerHand,chosenCard,playerVal);
 
         }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
+            timmmer.stop();
             Scanner input = new Scanner(System.in);
             System.out.println("Enter Color to Switch to");
             String newColor = input.nextLine();
@@ -193,7 +195,7 @@ public class rules {
                 colourChange(newColor,deckPile,size);
             }
         } else {
-            Player.playerChooseCard(playerhand,computerHand, deckPile,playerVal);
+            Player.playerChooseCard(playerhand,computerHand, deckPile,playerVal,timmmer);
         }
     }
     public static void colourChange(String colour, ArrayList<String> deckPile,int deckSize ){
