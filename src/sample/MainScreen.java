@@ -323,7 +323,7 @@ public class MainScreen extends Application {
 
         private int playerVal;
         int timeLimit = 20;
-        private static volatile int secs = 1;
+        private static volatile int secs = 0;
 
         public timer(int playerVal){
             this.playerVal = playerVal;
@@ -342,12 +342,12 @@ public class MainScreen extends Application {
 
                 if(secs==(timeLimit+1)){
                     if(playerVal==1){
-                        secs = 0;
+                        secs = 1;
                         Player.DrawCard(true);
                         UpdateAfterDrawCardP1();
                         MainScreen.player2Move();
                     }else if(playerVal==2){
-                        secs = 0;
+                        secs = 1;
                         Player.DrawCard(false);
                         UpdateAfterDrawCardP2();
                         MainScreen.player1Move();
