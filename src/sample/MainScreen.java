@@ -108,8 +108,6 @@ public class MainScreen extends Application {
     public Scene instructScreen() {
         instructPane.getChildren().addAll(play);
         instructPane.setBackground(background);
-        TextField text1 = new TextField();
-        instructPane.getChildren().add(text1);
         Scene instructScene = new Scene(instructPane ,image.getWidth(),image.getHeight());
         createPlayButton();
         return instructScene;
