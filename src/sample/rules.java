@@ -149,7 +149,7 @@ public class rules {
 
     }
     public static void gameTurn(ArrayList<String> playerhand, ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
-                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, MainScreen.timer timmmer) {
+                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, timer timmmer) {
         String[] chosenCardSplit = chosenCard.split("_", 2);
         String[] charSplit = chosenCardSplit[1].split("\\.",2);
         int sizeOfDeck = deckPile.size();
