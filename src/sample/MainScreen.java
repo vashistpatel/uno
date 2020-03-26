@@ -199,7 +199,6 @@ public class MainScreen extends Application {
         }
     };
 
-
     public static Runnable add2ToPlayer1 = new Runnable() {
         @Override
         public void run() {
