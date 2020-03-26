@@ -3,9 +3,11 @@ package sample;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -30,7 +32,6 @@ public class MainScreen extends Application {
     Button instructions = new Button("INSTRUCTIONS");
     Button play = new Button("PLAY");
     Button score = new Button("SCORE");
-    Button back_button = new Button("BACK");
 
     Image image = new Image("CARDS/background.png");
     static Image back = new Image("CARDS/BACK.png");
@@ -50,7 +51,6 @@ public class MainScreen extends Application {
         createScoreButton();
         createPlayButton();
 
-
         Thread game = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -67,8 +67,9 @@ public class MainScreen extends Application {
             pile.setY(image.getHeight()*.35);
             playPane.getChildren().addAll(pile);
 
-            game.start();
+            TimeDisplay.TimeDisplay2();
 
+            game.start();
         });
 
         instructions.setOnAction(event -> {
@@ -85,40 +86,42 @@ public class MainScreen extends Application {
 
         score.setOnAction(event -> {
             stage.setScene(scoreScreen());
-
         });
 
         stage.setScene(mainScreen());
         stage.show();
 
     }
-    public Scene mainScreen(){
+
+    public Scene mainScreen() {
         pane.getChildren().addAll(play, instructions, score);
         pane.setBackground(background);
         Scene iScene = new Scene(pane ,image.getWidth(),image.getHeight());
         return iScene;
     }
-    public Scene playScreen(){
+    public Scene playScreen() {
         playPane.getChildren().addAll();
         playPane.setBackground(background);
         Scene playScene = new Scene(playPane ,image.getWidth(),image.getHeight());
         return playScene;
     }
-    public Scene instructScreen(){
+    public Scene instructScreen() {
         instructPane.getChildren().addAll(play);
         instructPane.setBackground(background);
+        TextField text1 = new TextField();
+        instructPane.getChildren().add(text1);
         Scene instructScene = new Scene(instructPane ,image.getWidth(),image.getHeight());
         createPlayButton();
         return instructScene;
     }
     public Scene scoreScreen() {
-        scorePane.setBackground(new Background( new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        scorePane.setBackground(background);
 
-        // Score Output (Using Labels)
-        Label title_label = new Label("Score");
-        title_label.setTextFill(Color.WHITE);
-        title_label.setFont(new Font("Arial",30));
-        title_label.setTranslateX(350);
+        Rectangle textBox = new Rectangle(450, 275, Color.WHITE);
+        textBox.setTranslateX(175);
+        textBox.setTranslateY(65);
+        textBox.setOpacity(0.75);
+        scorePane.getChildren().add(textBox);
 
         // Create a ArrayList that will store the data from the file.
         List<String> stats_array = new ArrayList<>();
@@ -127,19 +130,17 @@ public class MainScreen extends Application {
         for (int i=0;i<stats_array.size(); i++) {
             Label label = new Label(stats_array.get(i));
             label.setText(stats_array.get(i));
-            label.setTextFill(Color.WHITE);
+            label.setTextFill(Color.BLACK);
             label.setFont(new Font("Arial",25));
             label.setTranslateX(225);
             label.setTranslateY(temp);
-            temp += 25;
+            temp += 30;
             scorePane.getChildren().addAll(label);
         }
 
-        createBackButton();
-        scorePane.getChildren().add(back_button);
-
-        // Add label to scorePane
-        scorePane.getChildren().add(title_label);
+        // Creates the play button
+        scorePane.getChildren().addAll(play);
+        createPlayButton();
 
         Scene scoreScene = new Scene(scorePane ,image.getWidth(),image.getHeight());
         return scoreScene;
@@ -162,12 +163,6 @@ public class MainScreen extends Application {
         score.setLayoutY(image.getHeight() * .85);
         score.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;-fx-background-insets: 0;-fx-text-fill: white;");
         score.setMinSize(100, 50);
-    }
-    public void createBackButton() {
-        back_button.setLayoutX(image.getWidth() * .45);
-        back_button.setLayoutY(image.getHeight() * .85);
-        back_button.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;-fx-background-insets: 0;-fx-text-fill: white;");
-        back_button.setMinSize(100, 50);
     }
 
 
@@ -252,7 +247,7 @@ public class MainScreen extends Application {
         Platform.runLater(updateP2);
 
         pile.setOnMouseClicked(event -> {
-                Player.DrawCard(turnChecker);
+            Player.DrawCard(turnChecker);
         });
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(chooseWhoGoesFirst==1){
@@ -266,7 +261,6 @@ public class MainScreen extends Application {
     }
     public static void plus2CardsP1(){
         Platform.runLater(add2ToPlayer1);
-
     }
 
 
