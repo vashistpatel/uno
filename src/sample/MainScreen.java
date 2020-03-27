@@ -53,6 +53,15 @@ public class MainScreen extends Application {
         createScoreButton();
         createPlayButton();
 
+        //Label for timer
+        Label TimeLabel = new Label("Timer:");
+        TimeLabel.setTextFill(Color.WHITE);
+        TimeLabel.setTranslateX(90);
+        TimeLabel.setTranslateY(200);
+        TimeLabel.setFont(Font.font("Cooper Black",25));
+        MainScreen.playPane.getChildren().addAll(TimeLabel);
+
+
         Thread game = new Thread(new Runnable() {
             @Override
             public void run() {
