@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-
+/*
+ * Saenthuran & Vethushon worked on Deck.java
+ *
+ * */
 public  class deck {
     //Figures out who goes first
-    public static int checkTurn(){
+    public static boolean checkTurn(){
         Random rand = new Random();
-        int randomInt = rand.nextInt(2) + 1;
-        return randomInt;
+        boolean random = rand.nextBoolean();
+        return random;
     }
 
-    //InitalizeDeck
     public static ArrayList<String> initalizeDeck(){
-        //Array of cards
+        /**/
         ArrayList<String> CARDS = new ArrayList<String>();
         char[] tempC = new char[4];
         tempC[0] = 'R';
@@ -26,26 +28,23 @@ public  class deck {
         blackCTemp[0] = 13;
         blackCTemp[1] = 14;
 
-        //add names of card and png to card
         for(int i =0;i<4;i++){
             for(int k =0;k<13;k++){
                 CARDS.add(tempC[i]+"_"+k+".png");
+
             }
         }
-
-        //add names of special cards and png to card
         for(int i =0;i<2;i++){
             for(int k=0;k<4;k++){
                 CARDS.add("M_"+blackCTemp[i]+".png");
             }
         }
-        //shuffle cards
         Collections.shuffle(CARDS);
         ArrayList<String> playingCards = new ArrayList<String>(CARDS);
         return playingCards;
     }
 
-    //Draw card from deck
+
     public static String drawCard(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         String card = "temp";
         if(s.size()==0){
@@ -57,18 +56,14 @@ public  class deck {
         }
         return card;
     }
-
-    //get cards for pile
     public static String deckDrawCard(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         System.out.println("Old Deck");
         System.out.println(s);
         String tempCard = s.get(0);
-        //indexing of the card names
         String[] cardSplit =  tempCard.split("_",2);
         String[] charSplit = cardSplit[1].split("\\.",2);
         int result = Integer.parseInt(charSplit[0]);
         int i =0;
-        //creating new deck
         while(cardSplit[0].equals("M")||result>9){
             i++;
             tempCard = s.get(i);
@@ -84,11 +79,9 @@ public  class deck {
         return card;
     }
 
-    //Update deck
     public static String upDateDeck(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         ArrayList<String> CARDS = new ArrayList<String>();
         CARDS = initalizeDeck();
-        //get all the cards in a deck
         ArrayList<String> totalDecks = new ArrayList<String>();
         for(int j=0;j<player1.size();j++){
             totalDecks.set(j,player1.get(j));
@@ -96,16 +89,21 @@ public  class deck {
         for(int i =0;i<40;i++){
             //Create a function that puts both players cards into an array then checks that arary with new deck
             for(int j=0;j<player1.size();j++){
-                if(CARDS.get(i) == totalDecks.get(j)){ CARDS.remove(i);} }
+                if(CARDS.get(i) == totalDecks.get(j)){
+                    CARDS.remove(i);
+                }
+            }
         }
 
-        for(int j=0;j<player2.size();j++){ totalDecks.set(j,player2.get(j)); }
-
-
+        for(int j=0;j<player2.size();j++){
+            totalDecks.set(j,player2.get(j));
+        }
         for(int i =0;i<40;i++){
             //Create a function that puts both players cards into an array then checks that arary with new deck
             for(int j=0;j<player2.size();j++){
-                if(CARDS.get(i) ==totalDecks.get(j)){ CARDS.remove(i); }
+                if(CARDS.get(i) ==totalDecks.get(j)){
+                    CARDS.remove(i);
+                }
             }
         }
         return drawCard(CARDS,player1,player2);
@@ -113,7 +111,7 @@ public  class deck {
 
 
 
-    //add card from player hand to pile
+
     public static ArrayList<String> addToPile(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
         pCard.add(playerCards.get(x));
         playerCards.remove(x);

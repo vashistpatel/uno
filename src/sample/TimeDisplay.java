@@ -1,7 +1,8 @@
 package sample;
+
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class TimeDisplay {
     public static volatile Label t = new Label();

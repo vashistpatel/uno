@@ -1,8 +1,8 @@
 package sample;
 
 import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
     public static ArrayList<String> playerHand = new ArrayList<>();
@@ -10,6 +10,7 @@ public class Player {
     public static ArrayList<ImageView> player1Hand = new ArrayList<>();
     public static ArrayList<ImageView> player2Hand = new ArrayList<>();
     public static int x;
+    public static String chosen_card;
 
     // playingcards is the main uno deck that players will pick up cards from
     public static ArrayList<String> playingcards = deck.initalizeDeck();
@@ -95,27 +96,18 @@ public class Player {
             }
         }catch(Exception exception){}
     }
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x,timer timmer) {
+    public static void playerChooseCard (ArrayList<String> playerHand, ArrayList<String> computerHand,
+                                         ArrayList<String> deckPile, int x, timer timmer, int index) {
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter Index Number");
-        String index_number = input.nextLine();
-        int index = Integer.parseInt(index_number);
-
-
-        if(index >= playerHand.size()){
-            System.out.println("Invalid index");
-            playerChooseCard(playerHand,computerHand,deckPile, x,timmer);
+        if (index<playerHand.size()) {
+            chosen_card = playerHand.get(index);
         }else {
-
-            String chosen_card = playerHand.get(index);
-            if (MainScreen.turnChecker==true){
-                rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x,timmer);
-            } else {
-                rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x,timmer);
-            }
-
+            chosen_card ="";
+        }
+        if (MainScreen.turnChecker==true){
+            rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x,timmer);
+        } else {
+            rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x,timmer);
         }
     }
-
 }

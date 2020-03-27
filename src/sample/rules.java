@@ -6,19 +6,13 @@ import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static sample.Player.*;
+import static sample.Player.player1Hand;
+import static sample.Player.player2Hand;
 
 public class rules {
-    public static int whoGoesFirst = deck.checkTurn();
-    public static int getWhoGoesFirst(){
-        return whoGoesFirst;
-    }
+    public static boolean whoGoesFirst = deck.checkTurn();
     public static int removal ;
 
-    public static int setWhoGoesFirst(int x){
-        whoGoesFirst = x;
-        return whoGoesFirst;
-    }
     public static void UpdatePlayer1(){
         if(Player.playerHand.size()>7){
             MainScreen.playPane.getChildren().removeAll(player1Hand);
@@ -26,7 +20,7 @@ public class rules {
 
             Player.x = 0;
             for(int i = 0; i < Player.playerHand.size(); i++) {
-                player1Hand.set(i,new ImageView("/CARDS/"+Player.playerHand.get(i)));
+                player1Hand.set(i,new ImageView("/CARDS/"+ Player.playerHand.get(i)));
                 player1Hand.get(i).setFitHeight(120);
                 player1Hand.get(i).setFitWidth(85);
                 player1Hand.get(i).setX(Player.x);
@@ -132,7 +126,7 @@ public class rules {
         Player.x = 0;
         if(Player.computerHand.size()>7){
             for(int i = 0; i < Player.computerHand.size(); i++) {
-                player2Hand.set(i,new ImageView("/CARDS/"+Player.computerHand.get(i)));
+                player2Hand.set(i,new ImageView("/CARDS/"+ Player.computerHand.get(i)));
                 player2Hand.get(i).setFitHeight(120);
                 player2Hand.get(i).setFitWidth(85);
                 player2Hand.get(i).setX(Player.x);
@@ -157,52 +151,51 @@ public class rules {
     }
     public static void gameTurn(ArrayList<String> playerhand, ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
                                 ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, timer timmmer) {
-        String[] chosenCardSplit = chosenCard.split("_", 2);
-        String[] charSplit = chosenCardSplit[1].split("\\.",2);
-        int sizeOfDeck = deckPile.size();
-        String t2 = deckPile.get(sizeOfDeck - 1);
-        String[] topOfDeck = t2.split("_", 2);
+        if (chosenCard != ""){
+            String[] chosenCardSplit = chosenCard.split("_", 2);
+            String[] charSplit = chosenCardSplit[1].split("\\.",2);
+            int sizeOfDeck = deckPile.size();
+            String t2 = deckPile.get(sizeOfDeck - 1);
+            String[] topOfDeck = t2.split("_", 2);
 
-        if (chosenCardSplit[0].equals(topOfDeck[0]) || chosenCardSplit[1].equals(topOfDeck[1])) {
-            timmmer.stop();
-            deckPile.add(chosenCard);
-            playerhand.remove(index);
-            removal = index;
-            cardAction(playerhand,computerHand,chosenCard,playerVal);
-
-        }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
-            timmmer.stop();
-            Scanner input = new Scanner(System.in);
-            System.out.println("Enter Color to Switch to");
-            String newColor = input.nextLine();
-
-            if (charSplit[0].equals("13")) {
-                System.out.println("+4");
+            if (chosenCardSplit[0].equals(topOfDeck[0]) || chosenCardSplit[1].equals(topOfDeck[1])) {
                 deckPile.add(chosenCard);
                 playerhand.remove(index);
-                int size = deckPile.size()-2;
                 removal = index;
-                colourChange(newColor,deckPile,size);
-                if(playerVal==1){
-                    for(int i =0;i<2;i++){
-                        MainScreen.plus2CardsP2();
-                    }
+                cardAction(playerhand,computerHand,chosenCard,playerVal);
+            }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
+                Scanner input = new Scanner(System.in);
+                System.out.println("Enter Color to Switch to");
+                String newColor = input.nextLine();
 
-                }else{
-                    for(int i =0;i<2;i++){
-                        MainScreen.plus2CardsP1();
+                if (charSplit[0].equals("13")) {
+                    System.out.println("+4");
+                    deckPile.add(chosenCard);
+                    playerhand.remove(index);
+                    int size = deckPile.size()-2;
+                    removal = index;
+                    colourChange(newColor,deckPile,size);
+                    if(playerVal==1){
+                        for(int i =0;i<2;i++){
+                            MainScreen.plus2CardsP2();
+                        }
+
+                    }else{
+                        for(int i =0;i<2;i++){
+                            MainScreen.plus2CardsP1();
+                        }
                     }
+                }else if(charSplit[0].equals("14")) {
+                    System.out.println("CC");
+                    deckPile.add(chosenCard);
+                    playerhand.remove(index);
+                    int size = deckPile.size()-2;
+                    removal = index;
+                    colourChange(newColor,deckPile,size);
                 }
-            }else if(charSplit[0].equals("14")) {
-                System.out.println("CC");
-                deckPile.add(chosenCard);
-                playerhand.remove(index);
-                int size = deckPile.size()-2;
-                removal = index;
-                colourChange(newColor,deckPile,size);
+
             }
-        } else {
-            Player.playerChooseCard(playerhand,computerHand, deckPile,playerVal,timmmer);
+            whoGoesFirst = !whoGoesFirst;
         }
     }
     public static void colourChange(String colour, ArrayList<String> deckPile,int deckSize ){
