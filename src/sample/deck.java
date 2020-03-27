@@ -1,9 +1,14 @@
 package sample;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-public  class deck {
 
+/*
+ * Saenthuran & Vethushon worked on Deck.java
+ *
+ * */
+public  class deck {
     //Figures out who goes first
     public static int checkTurn(){
         Random rand = new Random();
@@ -11,9 +16,8 @@ public  class deck {
         return randomInt;
     }
 
-    //initalize deck
     public static ArrayList<String> initalizeDeck(){
-        //intialize array Cards
+        /**/
         ArrayList<String> CARDS = new ArrayList<String>();
         char[] tempC = new char[4];
         tempC[0] = 'R';
@@ -24,28 +28,23 @@ public  class deck {
         blackCTemp[0] = 13;
         blackCTemp[1] = 14;
 
-        //Assign card to png
         for(int i =0;i<4;i++){
             for(int k =0;k<13;k++){
                 CARDS.add(tempC[i]+"_"+k+".png");
+
             }
         }
-
-        //Assign special card to png
         for(int i =0;i<2;i++){
             for(int k=0;k<4;k++){
                 CARDS.add("M_"+blackCTemp[i]+".png");
             }
         }
-        //shuffle cards
         Collections.shuffle(CARDS);
-        //create new arraylist
         ArrayList<String> playingCards = new ArrayList<String>(CARDS);
         return playingCards;
     }
 
 
-    //pick up a card
     public static String drawCard(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         String card = "temp";
         if(s.size()==0){
@@ -99,8 +98,6 @@ public  class deck {
         for(int j=0;j<player2.size();j++){
             totalDecks.set(j,player2.get(j));
         }
-
-
         for(int i =0;i<40;i++){
             //Create a function that puts both players cards into an array then checks that arary with new deck
             for(int j=0;j<player2.size();j++){
@@ -114,12 +111,10 @@ public  class deck {
 
 
 
-    //add card in player to the pile
+
     public static ArrayList<String> addToPile(ArrayList<String> pCard, ArrayList<String> playerCards, int x){
         pCard.add(playerCards.get(x));
         playerCards.remove(x);
         return playerCards;
     }
-
-
 }

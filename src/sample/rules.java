@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -51,6 +52,12 @@ public class rules {
             Player.x += 100;
         }
         }
+
+    }
+    public static void p2timer(int i){
+        String x = String.valueOf(i);
+        Label label = new Label(x);
+        MainScreen.playPane.getChildren().addAll((label));
 
     }
     public static void updatePlayer1(){//Without the .remove function
@@ -149,7 +156,7 @@ public class rules {
 
     }
     public static void gameTurn(ArrayList<String> playerhand, ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
-                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, timer timmmer) {
+                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, MainScreen.timer timmmer) {
         String[] chosenCardSplit = chosenCard.split("_", 2);
         String[] charSplit = chosenCardSplit[1].split("\\.",2);
         int sizeOfDeck = deckPile.size();
