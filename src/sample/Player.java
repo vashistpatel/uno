@@ -95,7 +95,7 @@ public class Player {
             }
         }catch(Exception exception){}
     }
-    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x,MainScreen.timer timmer) {
+    public static void playerChooseCard (ArrayList<String> playerHand,ArrayList<String> computerHand, ArrayList<String> deckPile, int x,timer timmer) {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter Index Number");
