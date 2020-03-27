@@ -300,12 +300,13 @@ public class MainScreen extends Application {
 
     public static void player1Move(){
         timer newTime = new timer(1);
-        Thread newTimeThread = new Thread(newTime);
+        Thread newTimeThread = new Thread(newTime);//create a new time thread
+
         int x =newTimeThread.getPriority();
         System.out.println("rU OF THE WORKING"+x);
 
         UpdateAfterDrawCardP1();
-        newTimeThread.start();
+        newTimeThread.start();//start the thread
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
@@ -322,10 +323,12 @@ public class MainScreen extends Application {
     }
 
     public static void player2Move() {
+
         timer newTime2 = new timer(2);
-        Thread newTime2Thread = new Thread(newTime2);
+        Thread newTime2Thread = new Thread(newTime2); //create a new time thread
+
         UpdateAfterDrawCardP2();
-        newTime2Thread.start();
+        newTime2Thread.start(); //start the thread
         int x =newTime2Thread.getPriority();
         turnChecker = false;
         pile.setDisable(true);
