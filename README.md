@@ -1,5 +1,10 @@
 # Uno Final Project - CSCI 2020U
-Group : Saenthuran Vignarajah, Vashist Patel, Vethuson Amit, Mayur Bhai, Nirojan Arunakirinathan
+Group : Name - Git Username
+Nirojan Arunakirinathan - NirojanAruna
+Mayur Bhai - mayurbhai24
+Saenthuran Vignarajah - SaenthuranVigna
+Vethuson Amit - AmitVethuson
+Vashist Patel - vashistpatel
 
 Instructions: The program must be ran through the terminal within Intellij. The following commands must be ran:
 
