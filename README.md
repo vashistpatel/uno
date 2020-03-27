@@ -6,11 +6,8 @@ Saenthuran Vignarajah - SaenthuranVigna
 Vethuson Amit - AmitVethuson
 Vashist Patel - vashistpatel
 
-Instructions: The program must be ran through the terminal within Intellij. The following commands must be ran:
+Instructions: The program must be ran through the terminal within Intellij.Please run the Server.java first, after you've run the Server.java please run the MainScreen.java
 
-    gradlew build
-    gradlew run
-    
 Group Member Contributions
   Saenthuran Vignarajah - Socket I/O, Game Logic
   Vashist Patel - Timer Functionality, Game Logic
