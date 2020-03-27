@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,14 +73,30 @@ public class MainScreen extends Application {
         });
 
         instructions.setOnAction(event -> {
-            Text heading = new Text("How To Play");
-            heading.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 50));
-            heading.setFill(Color.DARKRED);
-            heading.setY(50);
-            heading.setX(220);
+            //Creating Textfield for server
+            TextField text1 = new TextField("Enter !Help");
+            text1.setTranslateX(205);
+            text1.setTranslateY(261);
+            text1.setPrefWidth(400);
+            text1.setOpacity(0.85);
 
-            Rectangle textBox = new Rectangle(750.0, 75.0, Color.BLACK);
-            instructPane.getChildren().addAll(textBox, heading);
+            //Creating TextArea for server
+            TextArea textArea = new TextArea();
+            textArea.setTranslateX(205);
+            textArea.setTranslateY(80);
+            textArea.setOpacity(0.85);
+            textArea.setMaxSize(400,200);
+            //Adding TextArea & Text Field to pane
+            instructPane.getChildren().add(textArea);
+            instructPane.getChildren().add(text1);
+            text1.setOnAction(e->{
+                try {
+                    //If person enters something in textfield calls client class
+                    clientClass.sendMessages(text1,textArea);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             stage.setScene(instructScreen());
         });
 
@@ -274,7 +292,8 @@ public class MainScreen extends Application {
     public static void player1Move(){
         timer newTime = new timer(1);
         Thread newTimeThread = new Thread(newTime);
-
+        int x =newTimeThread.getPriority();
+        System.out.println("rU OF THE WORKING"+x);
 
         UpdateAfterDrawCardP1();
         newTimeThread.start();
@@ -296,13 +315,13 @@ public class MainScreen extends Application {
     public static void player2Move() {
         timer newTime2 = new timer(2);
         Thread newTime2Thread = new Thread(newTime2);
-
         UpdateAfterDrawCardP2();
         newTime2Thread.start();
+        int x =newTime2Thread.getPriority();
         turnChecker = false;
         pile.setDisable(true);
-
         Platform.runLater(updatePane);
+
         System.out.println("-------Player2-----------");
         System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Computer Hand: " +Player.computerHand);
@@ -319,5 +338,50 @@ public class MainScreen extends Application {
         }
     };
 
+    public static class timer implements Runnable{
 
+        private int playerVal;
+        int timeLimit = 20;
+        private static volatile int secs = 1;
+
+        public timer(int playerVal){
+            this.playerVal = playerVal;
+        }
+
+        public void run() {
+
+            while(secs<=timeLimit){
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {e.printStackTrace();}
+
+                Platform.runLater(callTD);
+                secs++;
+
+
+                if(secs==(timeLimit+1)){
+                    if(playerVal==1){
+                        secs = 0;
+                        Player.DrawCard(true);
+                        UpdateAfterDrawCardP1();
+                        MainScreen.player2Move();
+                    }else if(playerVal==2){
+                        secs = 0;
+                        Player.DrawCard(false);
+                        UpdateAfterDrawCardP2();
+                        MainScreen.player1Move();
+                    }
+                }
+
+            }
+            secs = 0;
+
+
+        }
+        public void stop(){
+            secs = (timeLimit+1);
+        }
+
+    }
 }
