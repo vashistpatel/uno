@@ -1,18 +1,25 @@
 package sample;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 public class Server{
     public static void main(String[] args) throws IOException {
+        //Creating socket and setting port to 8000
         ServerSocket sSocket = new ServerSocket(8000);
+        //Setting socket to look for inputs
         Socket socketListen = sSocket.accept();
+        //Setting up input and output for server
         DataInputStream clientInput = new DataInputStream(socketListen.getInputStream());
         DataOutputStream serverOutput = new DataOutputStream(socketListen.getOutputStream());
+        //Thread
         new Thread(() ->{
             try {
-
+                /*While true it takes the input from the client puts it into a string and returns
+                 * a specific msg based on the entered String then sends it back to the Client*/
                 while (true) {
                     String msg = clientInput.readUTF();
                     System.out.println(msg);
@@ -26,6 +33,8 @@ public class Server{
 
         }).start();
     }
+
+    //Function for figuring out what the server Should output
     public static String returnMessage(String msg) {
         if (msg.equals("!Help")) {
             return "-----------------------------------------------" + "\n" +
@@ -43,6 +52,7 @@ public class Server{
                     "Vashist Patel" + "\n" +
                     "-----------------------------------------------";
 
+
         } else if (msg.equals("!Rules")) {
             return "-----------------------------------------------"+"\n"+
                     "Cards Can Only Be Placed If They Have the Same Number/Colour"+"\n"+
@@ -59,7 +69,5 @@ public class Server{
         } else {
             return "Please Enter a Proper Command or Use !Help to get Started";
         }
-
     }
-
 }
