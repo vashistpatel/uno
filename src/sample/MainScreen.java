@@ -59,9 +59,10 @@ public class MainScreen extends Application {
         createPlayButton();
 
         //Label for timer
-        Label TimeLabel = new Label("Timer:");
-        TimeLabel.setTextFill(Color.WHITE);
-        TimeLabel.setTranslateX(90);
+        Label TimeLabel = new Label("Player       Turn");
+
+        TimeLabel.setTextFill(Color.BLACK);
+        TimeLabel.setTranslateX(60);
         TimeLabel.setTranslateY(200);
         TimeLabel.setFont(Font.font("Cooper Black",25));
         MainScreen.playPane.getChildren().addAll(TimeLabel);
@@ -83,6 +84,7 @@ public class MainScreen extends Application {
 
             Platform.runLater(updateP1);
             Platform.runLater(updateP2);
+            playerDisplay.playerDisplay2(turnChecker);
 
             game.start();
         });
@@ -307,10 +309,11 @@ public class MainScreen extends Application {
         //Start timer Thread
         timer newTime = new timer(1);
         Thread newTimeThread = new Thread(newTime);
-        int x =newTimeThread.getPriority();
-
         //update player hand
         UpdateAfterDrawCardP1();
+        newTimeThread.start();
+        int x =newTimeThread.getPriority();
+
         //show it is player 1
         turnChecker = true;
         pile.setDisable(true);
@@ -360,7 +363,10 @@ public class MainScreen extends Application {
     public static Runnable callTD = new Runnable() {
         @Override
         public void run() {
-            TimeDisplay.TimeDisplay2(timer.secs);
+            System.out.println("Do i get printed at all???");
+             //TimeDisplay.TimeDisplay2(timer.secs);
+             playerDisplay.playerDisplay2(turnChecker);
+
         }
     };
 }

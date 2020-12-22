@@ -13,6 +13,11 @@ public  class deck {
     public static boolean checkTurn(){
         Random rand = new Random();
         boolean random = rand.nextBoolean();
+        System.out.println(random);
+        System.out.println(random);
+        System.out.println(random);
+        System.out.println(random);
+
         return random;
     }
 

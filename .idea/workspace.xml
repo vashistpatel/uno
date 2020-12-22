@@ -2,25 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe7d433-04e4-4e50-b371-3a1b20965f10" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uno.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Uno.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/playerDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/uno/sample/deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/uno/sample/deck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/uno/sample/timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/uno/sample/timer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/timer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,5 +62,16 @@
       <updated>1608576510646</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
