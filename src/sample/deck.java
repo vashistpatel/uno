@@ -34,6 +34,7 @@ public  class deck {
 
             }
         }
+
         for(int i =0;i<2;i++){
             for(int k=0;k<4;k++){
                 CARDS.add("M_"+blackCTemp[i]+".png");
@@ -56,6 +57,7 @@ public  class deck {
         }
         return card;
     }
+
     public static String deckDrawCard(ArrayList<String> s,ArrayList<String> player1, ArrayList<String> player2){
         System.out.println("Old Deck");
         System.out.println(s);

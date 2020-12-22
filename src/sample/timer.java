@@ -8,7 +8,7 @@ import static sample.MainScreen.*;
 public class timer implements Runnable{
 
     private int playerVal;
-    int timeLimit = 20;
+    int timeLimit = 10000;
     public static volatile int secs = 0;
 
     public timer(int playerVal){
