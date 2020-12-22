@@ -59,13 +59,13 @@ public class MainScreen extends Application {
         createPlayButton();
 
         //Label for timer
-        Label TimeLabel = new Label("Player       Turn");
+        /*Label TimeLabel = new Label("Player       Turn");
 
         TimeLabel.setTextFill(Color.BLACK);
         TimeLabel.setTranslateX(60);
         TimeLabel.setTranslateY(200);
         TimeLabel.setFont(Font.font("Cooper Black",25));
-        MainScreen.playPane.getChildren().addAll(TimeLabel);
+        MainScreen.playPane.getChildren().addAll(TimeLabel);*/
 
         Thread game = new Thread(() -> gameplay());
 
@@ -363,7 +363,7 @@ public class MainScreen extends Application {
     public static Runnable callTD = new Runnable() {
         @Override
         public void run() {
-            System.out.println("Do i get printed at all???");
+            //System.out.println("Do i get printed at all???");
              //TimeDisplay.TimeDisplay2(timer.secs);
              playerDisplay.playerDisplay2(turnChecker);
 

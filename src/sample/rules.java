@@ -235,9 +235,9 @@ public class rules {
             if(charSplit[0].equals("10")){//Skip
                 System.out.println("Opponent Turn Skipped");
                 if(playerVal==1){
-                    MainScreen.player1Move();
+                   // MainScreen.player1Move();
                 }else if(playerVal ==2){
-                    MainScreen.player2Move();
+                   // MainScreen.player2Move();
                 }
 
 

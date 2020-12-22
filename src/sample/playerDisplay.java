@@ -10,22 +10,22 @@ public class playerDisplay{
     {
         try{
             //Set number for timer
-            System.out.println("playerDisplay:"+i);
+           // System.out.println("playerDisplay:"+i);
             if (i == true){
-                System.out.println("do i get ran?");
-                p.setText("1's");
-                p.setTranslateX(150);
-                p.setTranslateY(200);
-                p.setTextFill(Color.WHITE);
+                //System.out.println("do i get ran?");
+                p.setText("Player 1's Turn");
+                p.setTranslateX(50);
+                p.setTranslateY(250);
+                p.setTextFill(Color.BLACK);
                 p.setFont(Font.font("Cooper Black",25));
                 MainScreen.playPane.getChildren().addAll(p);
 
             }
             else if(i == false ){
-                p.setText("2's");
-                p.setTranslateX(150);
-                p.setTranslateY(200);
-                p.setTextFill(Color.WHITE);
+                p.setText("Player 2's Turn");
+                p.setTranslateX(50);
+                p.setTranslateY(150);
+                p.setTextFill(Color.BLACK);
                 p.setFont(Font.font("Cooper Black",25));
                 MainScreen.playPane.getChildren().addAll(p);
             }
