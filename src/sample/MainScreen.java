@@ -317,7 +317,8 @@ public class MainScreen extends Application {
         turnChecker = true;
         pile.setDisable(true);
         Platform.runLater(updatePane);
-
+        //Displays Player Turn on screen
+        Platform.runLater(callTD);
         System.out.println("-------Player1-----------");
         System.out.println("Deck:"+ deckPile.Pile());
         pile.setDisable(false);
@@ -346,6 +347,9 @@ public class MainScreen extends Application {
         pile.setDisable(true);
         //update pane
         Platform.runLater(updatePane);
+
+        //Displays Player Turn on screen
+        Platform.runLater(callTD);
         System.out.println("-------Player2-----------");
         System.out.println("Deck:"+ deckPile.Pile());
         System.out.println("Computer Hand: " + Player.computerHand);

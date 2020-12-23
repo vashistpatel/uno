@@ -196,6 +196,7 @@ public class rules {
                 }
 
             }
+            //Switch player's turn
             whoGoesFirst = !whoGoesFirst;
         }
     }
@@ -236,21 +237,27 @@ public class rules {
             if(charSplit[0].equals("10")){//Skip
                 System.out.println("Opponent Turn Skipped");
                 if(playerVal==1){
-                    whoGoesFirst = !whoGoesFirst;
-                   //MainScreen.player1Move();
-                }else if(playerVal ==2){
+                    //Switch player's turn
                     whoGoesFirst = !whoGoesFirst;
 
-                    //MainScreen.player2Move();
+                }else if(playerVal ==2){
+                    //Switch player's turn
+                    whoGoesFirst = !whoGoesFirst;
+
+
                 }
 
 
             }else if(charSplit[0].equals("11")){//Reverse
-               /* if(getWhoGoesFirst()==0){
-                    setWhoGoesFirst(1);
-                }else{
-                    setWhoGoesFirst(0);
-                }*/
+                System.out.println("Reverse");
+                if(playerVal==1){
+                    whoGoesFirst = !whoGoesFirst;
+
+                }else if(playerVal ==2){
+                    whoGoesFirst = !whoGoesFirst;
+
+
+                }
 
             }else if(charSplit[0].equals("12")){//+2
                 if(playerVal==1){
