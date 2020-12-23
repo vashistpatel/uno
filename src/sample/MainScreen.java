@@ -263,10 +263,10 @@ public class MainScreen extends Application {
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(rules.whoGoesFirst==true){
                 player1Move();
-                player2Move();
+                //player2Move();
             }else{
                 player2Move();
-                player1Move();
+                //player1Move();
             }
         }
     }

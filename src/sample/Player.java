@@ -106,6 +106,7 @@ public class Player {
         }
         if (MainScreen.turnChecker==true){
             rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x,timmer);
+
         } else {
             rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x,timmer);
         }
