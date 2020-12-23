@@ -59,13 +59,12 @@ public class MainScreen extends Application {
         createPlayButton();
 
         //Label for timer
-        /*Label TimeLabel = new Label("Player       Turn");
-
-        TimeLabel.setTextFill(Color.BLACK);
-        TimeLabel.setTranslateX(60);
-        TimeLabel.setTranslateY(200);
-        TimeLabel.setFont(Font.font("Cooper Black",25));
-        MainScreen.playPane.getChildren().addAll(TimeLabel);*/
+//        Label TimeLabel = new Label("Player       Turn");
+//        TimeLabel.setTextFill(Color.BLACK);
+//        TimeLabel.setTranslateX(60);
+//        TimeLabel.setTranslateY(200);
+//        TimeLabel.setFont(Font.font("Cooper Black",25));
+//        MainScreen.playPane.getChildren().addAll(TimeLabel);
 
         Thread game = new Thread(() -> gameplay());
 
@@ -291,13 +290,13 @@ public class MainScreen extends Application {
 
     // takes player input and makes move
     public static void checkInput (ArrayList<String> playerHand,ArrayList<String> computerHand,
-                                   ArrayList<String> deckPile, int x, timer t){
+                                   ArrayList<String> deckPile, int x /*, timer t*/){
         count =0;
         userInput.clear();
         //button for entering player input
         while (count ==0){
             makeMove.setOnMousePressed(event -> {
-                Player.playerChooseCard(playerHand, computerHand, mainPile, x, t,Integer.parseInt(userInput.getText()));
+                Player.playerChooseCard(playerHand, computerHand, mainPile, x /*, t*/,Integer.parseInt(userInput.getText()));
                 count=1;
             });
         }
@@ -307,12 +306,12 @@ public class MainScreen extends Application {
     //Move for player one
     public static void player1Move(){
         //Start timer Thread
-        timer newTime = new timer(1);
-        Thread newTimeThread = new Thread(newTime);
+//        timer newTime = new timer(1);
+//        Thread newTimeThread = new Thread(newTime);
         //update player hand
         UpdateAfterDrawCardP1();
-        newTimeThread.start();
-        int x =newTimeThread.getPriority();
+//        newTimeThread.start();
+//        int x =newTimeThread.getPriority();
 
         //show it is player 1
         turnChecker = true;
@@ -323,7 +322,7 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+ deckPile.Pile());
         pile.setDisable(false);
         //get player input and make move
-        checkInput(Player.playerHand, Player.computerHand,mainPile,1, newTime);
+        checkInput(Player.playerHand, Player.computerHand,mainPile,1 /*, newTime*/);
         if (Player.chosen_card != ""){
             Platform.runLater(updatePlayer1);
         }
@@ -335,12 +334,13 @@ public class MainScreen extends Application {
     // move for player two
     public static void player2Move() {
         //start timer thread
-        timer newTime2 = new timer(2);
-        Thread newTime2Thread = new Thread(newTime2);
+//        timer newTime2 = new timer(2);
+//        Thread newTime2Thread = new Thread(newTime2);
         //update player hand
         UpdateAfterDrawCardP2();
-        newTime2Thread.start();
-        int x =newTime2Thread.getPriority();
+//        newTime2Thread.start();
+//        int x =newTime2Thread.getPriority();
+
         //show it is player 2
         turnChecker = false;
         pile.setDisable(true);
@@ -351,7 +351,7 @@ public class MainScreen extends Application {
         System.out.println("Computer Hand: " + Player.computerHand);
         pile.setDisable(false);
         //player input and make move
-        checkInput(Player.computerHand, Player.playerHand,mainPile,2, newTime2);
+        checkInput(Player.computerHand, Player.playerHand,mainPile,2 /*, newTime2*/);
         if (Player.chosen_card != ""){
             Platform.runLater(updatePlayer2);
         }

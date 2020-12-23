@@ -97,7 +97,7 @@ public class Player {
         }catch(Exception exception){}
     }
     public static void playerChooseCard (ArrayList<String> playerHand, ArrayList<String> computerHand,
-                                         ArrayList<String> deckPile, int x, timer timmer, int index) {
+                                         ArrayList<String> deckPile, int x,/*, timer timmer*/ int index) {
 
         if (index<playerHand.size()) {
             chosen_card = playerHand.get(index);
@@ -105,10 +105,10 @@ public class Player {
             chosen_card ="";
         }
         if (MainScreen.turnChecker==true){
-            rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x,timmer);
+            rules.gameTurn(playerHand,computerHand, player1Hand,player2Hand, chosen_card, deckPile, index,x/*,timmer*/);
 
         } else {
-            rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x,timmer);
+            rules.gameTurn(playerHand,computerHand, player2Hand,player1Hand, chosen_card, deckPile, index, x/*,timmer*/);
         }
     }
 }

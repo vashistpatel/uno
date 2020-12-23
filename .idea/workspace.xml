@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe7d433-04e4-4e50-b371-3a1b20965f10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/playerDisplay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/uno/sample/deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/uno/sample/deck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Uno.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Uno.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/uno/sample/TimeDisplay.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/TimeDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/TimeDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/rules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/timer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +36,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15039062" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -41,7 +47,7 @@
     <configuration name="MainScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sample.MainScreen" />
       <module name="uno" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFxJDKP\javafx-sdk-11.0.2\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../../../javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -71,29 +77,42 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1637" height="191" key="GridCell.Tab.0.bottom" timestamp="1608744337678">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608745306990">
+      <screen x="0" y="25" width="1440" height="875" />
     </state>
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.875@0.25.1440.875" timestamp="1608745306990" />
+    <state width="1398" height="114" key="GridCell.Tab.0.bottom" timestamp="1608746532227">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="114" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1608746532227" />
     <state width="1637" height="191" key="GridCell.Tab.0.bottom/1680.-24.1536.864/0.0.1680.1050@0.0.1680.1050" timestamp="1608744337678" />
-    <state width="1637" height="191" key="GridCell.Tab.0.center" timestamp="1608744337678">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1398" height="114" key="GridCell.Tab.0.center" timestamp="1608746532226">
+      <screen x="0" y="25" width="1440" height="875" />
     </state>
+    <state width="1398" height="114" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1608746532226" />
     <state width="1637" height="191" key="GridCell.Tab.0.center/1680.-24.1536.864/0.0.1680.1050@0.0.1680.1050" timestamp="1608744337678" />
-    <state width="1637" height="191" key="GridCell.Tab.0.left" timestamp="1608744337678">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1398" height="114" key="GridCell.Tab.0.left" timestamp="1608746532226">
+      <screen x="0" y="25" width="1440" height="875" />
     </state>
+    <state width="1398" height="114" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1608746532226" />
     <state width="1637" height="191" key="GridCell.Tab.0.left/1680.-24.1536.864/0.0.1680.1050@0.0.1680.1050" timestamp="1608744337678" />
-    <state width="1637" height="191" key="GridCell.Tab.0.right" timestamp="1608744337678">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1398" height="114" key="GridCell.Tab.0.right" timestamp="1608746532227">
+      <screen x="0" y="25" width="1440" height="875" />
     </state>
+    <state width="1398" height="114" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1608746532227" />
     <state width="1637" height="191" key="GridCell.Tab.0.right/1680.-24.1536.864/0.0.1680.1050@0.0.1680.1050" timestamp="1608744337678" />
+    <state x="208" y="42" key="SettingsEditor" timestamp="1608745493461">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="208" y="42" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1608745493461" />
   </component>
 </project>

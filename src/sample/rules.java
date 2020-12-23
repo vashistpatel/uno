@@ -49,12 +49,12 @@ public class rules {
         }
 
     }
-    public static void p2timer(int i){
-        String x = String.valueOf(i);
-        Label label = new Label(x);
-        MainScreen.playPane.getChildren().addAll((label));
-
-    }
+//    public static void p2timer(int i){
+//        String x = String.valueOf(i);
+//        Label label = new Label(x);
+//        MainScreen.playPane.getChildren().addAll((label));
+//
+//    }
     public static void updatePlayer1(){//Without the .remove function
         if(Player.playerHand.size()>7){
             MainScreen.playPane.getChildren().removeAll(player1Hand);
@@ -151,7 +151,7 @@ public class rules {
 
     }
     public static void gameTurn(ArrayList<String> playerhand, ArrayList<String> computerHand, ArrayList<ImageView> player1hand,
-                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal, timer timmmer) {
+                                ArrayList<ImageView> player2Hand, String chosenCard, ArrayList<String> deckPile, int index, int playerVal /*, timer timmmer*/) {
         if (chosenCard != ""){
             String[] chosenCardSplit = chosenCard.split("_", 2);
             String[] charSplit = chosenCardSplit[1].split("\\.",2);
