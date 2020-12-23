@@ -164,6 +164,14 @@ public class rules {
                 playerhand.remove(index);
                 removal = index;
                 cardAction(playerhand,computerHand,chosenCard,playerVal);
+
+                //Update cards on screen
+                if(playerVal==1){
+                    Platform.runLater(MainScreen.updatePlayer1);
+                }else if(playerVal ==2){
+                    Platform.runLater(MainScreen.updatePlayer2);
+                }
+
             }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter Color to Switch to");
@@ -195,7 +203,19 @@ public class rules {
                     colourChange(newColor,deckPile,size);
                 }
 
+                //Update cards on screen
+                if(playerVal==1){
+                    Platform.runLater(MainScreen.updatePlayer1);
+                }else if(playerVal ==2){
+                    Platform.runLater(MainScreen.updatePlayer2);
+                }
+
+            }else{
+                //If input is wrong then do nothing and give player another chance
+                System.out.println("------Wrong Input Try AGAIN------");
+                whoGoesFirst = !whoGoesFirst;
             }
+
             //Switch player's turn
             whoGoesFirst = !whoGoesFirst;
         }

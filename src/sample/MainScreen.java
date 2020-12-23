@@ -324,9 +324,12 @@ public class MainScreen extends Application {
         pile.setDisable(false);
         //get player input and make move
         checkInput(Player.playerHand, Player.computerHand,mainPile,1 /*, newTime*/);
+
+
+        /*This is if we need it for the future
         if (Player.chosen_card != ""){
             Platform.runLater(updatePlayer1);
-        }
+        }*/
         //output to terminal
         System.out.println("Player Hand: "+ Player.playerHand);
         System.out.println("Deck: "+ deckPile.Pile());
@@ -356,9 +359,12 @@ public class MainScreen extends Application {
         pile.setDisable(false);
         //player input and make move
         checkInput(Player.computerHand, Player.playerHand,mainPile,2 /*, newTime2*/);
+
+        /*This is if we need it for the future
         if (Player.chosen_card != ""){
             Platform.runLater(updatePlayer2);
-        }
+        }*/
+
         // print output to terminal
         System.out.println("Computer Hand: " + Player.computerHand);
         pile.setDisable(true);
