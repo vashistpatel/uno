@@ -1,11 +1,15 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static sample.Player.player1Hand;
 import static sample.Player.player2Hand;
@@ -13,7 +17,6 @@ import static sample.Player.player2Hand;
 public class rules {
     public static boolean whoGoesFirst = deck.checkTurn();
     public static int removal ;
-
     public static void UpdatePlayer1(){
         if(Player.playerHand.size()>7){
             MainScreen.playPane.getChildren().removeAll(player1Hand);
@@ -175,7 +178,8 @@ public class rules {
             }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter Color to Switch to");
-                String newColor = input.nextLine();
+                String newColor =ColorPicker();
+                System.out.println("are you working?");
 
                 if (charSplit[0].equals("13")) {
                     System.out.println("+4");
@@ -299,7 +303,81 @@ public class rules {
         }
 
     }
+        //instructions.setLayoutX(image.getWidth()*.66);
+      //  instructions.setLayoutY(image.getHeight()*.85);
+     //   instructions.setStyle("-fx-background-color: linear-gradient(#ff9500, #be2d00); -fx-background-radius: 50;-fx-background-insets: 0;-fx-text-fill: white;");
+     //   instructions.setMinSize(100, 50);
+    public static String ColorPicker(){
+        AtomicReference<String> ccolor = new AtomicReference<>("");
+        Pane root = new Pane();
+        Stage stage = new Stage();
+        stage.setTitle("My New Stage Title");
+        stage.setScene(new Scene(root, 450, 450));
 
+        Button red = new Button();
+        red.setStyle("-fx-background-color: #ff0000; -fx-border-width: 5px;");
+        red.setTranslateX(0);
+        red.setTranslateY(0);
+        red.setMinWidth(224);
+        red.setMinHeight(224);
+        root.getChildren().addAll(red);
+
+
+        Button blue = new Button();
+        blue.setStyle("-fx-background-color: #3498DB; -fx-border-width: 5px;");
+        blue.setTranslateX(225);
+        blue.setTranslateY(0);
+        blue.setMinWidth(224);
+        blue.setMinHeight(224);
+        root.getChildren().addAll(blue);
+
+
+        Button yellow = new Button();
+        yellow.setStyle("-fx-background-color: #F4D03F; -fx-border-width: 5px;");
+        yellow.setTranslateX(0);
+        yellow.setTranslateY(225);
+        yellow.setMinWidth(224);
+        yellow.setMinHeight(224);
+        root.getChildren().addAll(yellow);
+
+        Button green = new Button();
+        green.setStyle("-fx-background-color: #52BE80; -fx-border-width: 5px;");
+        green.setTranslateX(225);
+        green.setTranslateY(225);
+        green.setMinWidth(224);
+        green.setMinHeight(224);
+        root.getChildren().addAll(green);
+
+        red.setOnMouseClicked(event -> {
+            System.out.println("r");
+            ccolor.set("r");
+            stage.close();
+
+        });
+
+        blue.setOnMouseClicked(event -> {
+            System.out.println("b");
+            ccolor.set("b");
+            stage.close();
+
+        });
+
+        green.setOnMouseClicked(event -> {
+            ccolor.set("g");
+            stage.close();
+
+        });
+
+        yellow.setOnMouseClicked(event -> {
+            ccolor.set("y");
+            stage.close();
+
+        });
+
+        stage.showAndWait();
+        stage.close();
+        return ccolor.get();
+    }
 
 }
 
