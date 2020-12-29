@@ -262,11 +262,30 @@ public class MainScreen extends Application {
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(rules.whoGoesFirst==true){
                 player1Move();
+                System.out.println(Player.playerHand.size());
                 //player2Move();
+                if(Player.playerHand.size() == 0){GameWinner(true);}
             }else{
                 player2Move();
                 //player1Move();
+                if(Player.computerHand.size() == 0){GameWinner(false);}
             }
+        }
+
+//        if(Player.playerHand.size() < 0){
+//            GameWinner(true);
+//        }
+//        else if (Player.computerHand.size() < 0){
+//            GameWinner(false);
+//        }
+
+    }
+
+    public static void GameWinner(boolean won){
+        if(won == true){
+            System.out.println("player 1 won");
+        } else if (won == false){
+            System.out.println("player 2 won");
         }
     }
 

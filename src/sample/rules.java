@@ -179,7 +179,7 @@ public class rules {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter Color to Switch to");
                 String newColor =ColorPicker();
-                System.out.println("are you working?");
+//                System.out.println("are you working?");
 
                 if (charSplit[0].equals("13")) {
                     System.out.println("+4");
@@ -311,7 +311,7 @@ public class rules {
         AtomicReference<String> ccolor = new AtomicReference<>("");
         Pane root = new Pane();
         Stage stage = new Stage();
-        stage.setTitle("My New Stage Title");
+        stage.setTitle("Pick a Colour!!!");
         stage.setScene(new Scene(root, 450, 450));
 
         Button red = new Button();
