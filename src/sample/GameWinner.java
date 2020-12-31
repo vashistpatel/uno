@@ -53,6 +53,7 @@ public class GameWinner {
                 p.setTextFill(Color.BLACK);
                 p.setFont(Font.font("Cooper Black",25));
                 winnerPane.getChildren().addAll(p);
+                winnerPane.setBackground(background);
             }
 
             stage2.showAndWait();

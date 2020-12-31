@@ -258,7 +258,7 @@ public class MainScreen extends Application {
             Player.DrawCard(turnChecker);
         });
 
-//        Platform.runLater(callP1);
+//        Platform.runLater(callP2);
 
         //Changing player turns
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
