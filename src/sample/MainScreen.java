@@ -258,6 +258,8 @@ public class MainScreen extends Application {
             Player.DrawCard(turnChecker);
         });
 
+        Platform.runLater(callP2);
+
         //Changing player turns
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(rules.whoGoesFirst==true){
@@ -273,37 +275,6 @@ public class MainScreen extends Application {
         }
 
     }
-
-//    public static void GameWinner(boolean won){
-//
-////        Rectangle rect = new Rectangle(100, 100, 200, 300);
-////        Pane winnerPane = new Pane();
-////        Stage stage = new Stage();
-////        stage.setTitle("Winner Winner Chiken Dinner!");
-////        stage.setScene(new Scene(winnerPane, 450, 450));
-//
-////        Label p = new Label();
-//
-//        if(won == true){
-//            System.out.println("player 1 won");
-////            p.setText("player 1 won");
-////            p.setTranslateX(50);
-////            p.setTranslateY(250);
-////            p.setTextFill(Color.BLACK);
-////            p.setFont(Font.font("Cooper Black",25));
-////            winnerPane.getChildren().addAll(p);
-////            stage.close();
-//        } else if (won == false){
-//            System.out.println("player 2 won");
-////            p.setText("player 2 won");
-////            p.setTranslateX(50);
-////            p.setTranslateY(250);
-////            p.setTextFill(Color.BLACK);
-////            p.setFont(Font.font("Cooper Black",25));
-////            winnerPane.getChildren().addAll(p);
-////            stage.close();
-//        }
-//    }
 
     //call add 2 to player 1
     public static void plus2CardsP1(){
