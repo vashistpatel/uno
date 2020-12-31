@@ -68,7 +68,7 @@ public class MainScreen extends Application {
 
         Thread game = new Thread(() -> gameplay());
 
-        play.setOnAction(event ->{ //play button -> sets teh images and starts the game.
+        play.setOnAction(event ->{ //play button -> sets the images and starts the game.
             stage.setScene(playScreen());
 
             pile.setFitHeight(120);
@@ -264,30 +264,46 @@ public class MainScreen extends Application {
                 player1Move();
                 System.out.println(Player.playerHand.size());
                 //player2Move();
-                if(Player.playerHand.size() == 0){GameWinner(true);}
+                if(Player.playerHand.size() == 0){Platform.runLater(callP1);}
             }else{
                 player2Move();
                 //player1Move();
-                if(Player.computerHand.size() == 0){GameWinner(false);}
+                if(Player.computerHand.size() == 0){Platform.runLater(callP2);}
             }
         }
 
-//        if(Player.playerHand.size() < 0){
-//            GameWinner(true);
-//        }
-//        else if (Player.computerHand.size() < 0){
-//            GameWinner(false);
-//        }
-
     }
 
-    public static void GameWinner(boolean won){
-        if(won == true){
-            System.out.println("player 1 won");
-        } else if (won == false){
-            System.out.println("player 2 won");
-        }
-    }
+//    public static void GameWinner(boolean won){
+//
+////        Rectangle rect = new Rectangle(100, 100, 200, 300);
+////        Pane winnerPane = new Pane();
+////        Stage stage = new Stage();
+////        stage.setTitle("Winner Winner Chiken Dinner!");
+////        stage.setScene(new Scene(winnerPane, 450, 450));
+//
+////        Label p = new Label();
+//
+//        if(won == true){
+//            System.out.println("player 1 won");
+////            p.setText("player 1 won");
+////            p.setTranslateX(50);
+////            p.setTranslateY(250);
+////            p.setTextFill(Color.BLACK);
+////            p.setFont(Font.font("Cooper Black",25));
+////            winnerPane.getChildren().addAll(p);
+////            stage.close();
+//        } else if (won == false){
+//            System.out.println("player 2 won");
+////            p.setText("player 2 won");
+////            p.setTranslateX(50);
+////            p.setTranslateY(250);
+////            p.setTextFill(Color.BLACK);
+////            p.setFont(Font.font("Cooper Black",25));
+////            winnerPane.getChildren().addAll(p);
+////            stage.close();
+//        }
+//    }
 
     //call add 2 to player 1
     public static void plus2CardsP1(){
@@ -398,4 +414,17 @@ public class MainScreen extends Application {
 
         }
     };
+    public static Runnable callP1 = new Runnable() {
+        @Override
+        public void run() {
+            GameWinner.GameWinner2(true);
+        }
+    };
+    public static Runnable callP2 = new Runnable() {
+        @Override
+        public void run() {
+            GameWinner.GameWinner2(false);
+        }
+    };
+
 }
