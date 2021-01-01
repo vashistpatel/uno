@@ -192,39 +192,39 @@ public class rules {
                 String test;
                 Button red = new Button();
                 red.setStyle("-fx-background-color: #ff0000; -fx-border-width: 5px;");
-                red.setTranslateX(0);
-                red.setTranslateY(0);
-                red.setMinWidth(224);
-                red.setMinHeight(224);
+                red.setTranslateX(500);
+                red.setTranslateY(225);
+                red.setMinWidth(50);
+                red.setMinHeight(50);
                 //root.getChildern().addAll(red);
                 MainScreen.playPane.getChildren().addAll(red);
 
 
                 Button blue = new Button();
                 blue.setStyle("-fx-background-color: #3498DB; -fx-border-width: 5px;");
-                blue.setTranslateX(225);
-                blue.setTranslateY(0);
-                blue.setMinWidth(224);
-                blue.setMinHeight(224);
+                blue.setTranslateX(551);
+                blue.setTranslateY(174);
+                blue.setMinWidth(50);
+                blue.setMinHeight(50);
                 // root.getChildern().addAll(blue);
                 MainScreen.playPane.getChildren().addAll(blue);
 
 
                 Button yellow = new Button();
                 yellow.setStyle("-fx-background-color: #F4D03F; -fx-border-width: 5px;");
-                yellow.setTranslateX(0);
-                yellow.setTranslateY(225);
-                yellow.setMinWidth(224);
-                yellow.setMinHeight(224);
+                yellow.setTranslateX(500);
+                yellow.setTranslateY(174);
+                yellow.setMinWidth(50);
+                yellow.setMinHeight(50);
                 //root.getChildern().addAll(yellow);
                 MainScreen.playPane.getChildren().addAll(yellow);
 
                 Button green = new Button();
                 green.setStyle("-fx-background-color: #52BE80; -fx-border-width: 5px;");
-                green.setTranslateX(225);
+                green.setTranslateX(551);
                 green.setTranslateY(225);
-                green.setMinWidth(224);
-                green.setMinHeight(224);
+                green.setMinWidth(50);
+                green.setMinHeight(50);
                 //root.getChildern().addAll(green);
                 MainScreen.playPane.getChildren().addAll(green);
 
