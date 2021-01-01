@@ -179,69 +179,62 @@ public class rules {
                 }
 
             }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
-                Scanner input = new Scanner(System.in);
-               // String newColor="";
+                int buttonSquareSize = 50;
                 System.out.println("Enter Color to Switch to");
-
-                //while(check == 0){
-               // String newColor = ColorPicker();
-                //}
                 AtomicReference<String> ccolor = new AtomicReference<>("");
 
-
-                String test;
+                //-----------------Creating Buttons-----------------------
+                //Red Button
                 Button red = new Button();
                 red.setStyle("-fx-background-color: #ff0000; -fx-border-width: 5px;");
                 red.setTranslateX(500);
                 red.setTranslateY(225);
-                red.setMinWidth(50);
-                red.setMinHeight(50);
-                //root.getChildern().addAll(red);
+                red.setMinWidth(buttonSquareSize);
+                red.setMinHeight(buttonSquareSize);
                 MainScreen.playPane.getChildren().addAll(red);
 
-
+                //Blue Button
                 Button blue = new Button();
                 blue.setStyle("-fx-background-color: #3498DB; -fx-border-width: 5px;");
                 blue.setTranslateX(551);
                 blue.setTranslateY(174);
-                blue.setMinWidth(50);
-                blue.setMinHeight(50);
-                // root.getChildern().addAll(blue);
+                blue.setMinWidth(buttonSquareSize);
+                blue.setMinHeight(buttonSquareSize);
                 MainScreen.playPane.getChildren().addAll(blue);
 
-
+                //Yellow Button
                 Button yellow = new Button();
                 yellow.setStyle("-fx-background-color: #F4D03F; -fx-border-width: 5px;");
                 yellow.setTranslateX(500);
                 yellow.setTranslateY(174);
-                yellow.setMinWidth(50);
-                yellow.setMinHeight(50);
-                //root.getChildern().addAll(yellow);
+                yellow.setMinWidth(buttonSquareSize);
+                yellow.setMinHeight(buttonSquareSize);
                 MainScreen.playPane.getChildren().addAll(yellow);
 
+                //Green Button
                 Button green = new Button();
                 green.setStyle("-fx-background-color: #52BE80; -fx-border-width: 5px;");
                 green.setTranslateX(551);
                 green.setTranslateY(225);
-                green.setMinWidth(50);
-                green.setMinHeight(50);
-                //root.getChildern().addAll(green);
+                green.setMinWidth(buttonSquareSize);
+                green.setMinHeight(buttonSquareSize);
                 MainScreen.playPane.getChildren().addAll(green);
 
-                red.setOnMouseClicked(event -> {
-                    System.out.println("r");
-                    ccolor.set("r");
-                    System.out.println(ccolor.get());
 
-                    //  stage.close();
+                //------------Button Actions---------------
+                //Red Button Action
+                red.setOnMouseClicked(event -> {
+                    ccolor.set("r");
+
+                    //Remove All buttons from screen
                     MainScreen.playPane.getChildren().remove(green);
                     MainScreen.playPane.getChildren().remove(blue);
                     MainScreen.playPane.getChildren().remove(red);
                     MainScreen.playPane.getChildren().remove(yellow);
                     String newColor = ccolor.get();
-                    System.out.println("this is to seee whats going on: " + newColor);
-//                System.out.println("are you working?");
 
+
+                    //Check for a pick up 4 and colorchange
                     if (charSplit[0].equals("13")) {
                         System.out.println("+4");
                         deckPile.add(chosenCard);
@@ -259,6 +252,7 @@ public class rules {
                                 MainScreen.plus2CardsP1();
                             }
                         }
+                        // Check for just ColorChange
                     }else if(charSplit[0].equals("14")) {
                         System.out.println("CC");
                         deckPile.add(chosenCard);
@@ -280,20 +274,19 @@ public class rules {
 
                 });
 
+                //Blue Button Action
                 blue.setOnMouseClicked(event -> {
-                    System.out.println("b");
                     ccolor.set("b");
-                    System.out.println("fsdfsdfgsdfgsdfg"+ccolor.get());
 
-                    //  stage.close();
+                    //Remove All buttons from screen
                     MainScreen.playPane.getChildren().remove(green);
                     MainScreen.playPane.getChildren().remove(blue);
                     MainScreen.playPane.getChildren().remove(red);
                     MainScreen.playPane.getChildren().remove(yellow);
                     String newColor = ccolor.get();
-                    System.out.println("this is to seee whats going on: " + newColor);
-//                System.out.println("are you working?");
 
+
+                    //Check for a pick up 4 and colorchange
                     if (charSplit[0].equals("13")) {
                         System.out.println("+4");
                         deckPile.add(chosenCard);
@@ -311,6 +304,7 @@ public class rules {
                                 MainScreen.plus2CardsP1();
                             }
                         }
+                        // Check for just ColorChange
                     }else if(charSplit[0].equals("14")) {
                         System.out.println("CC");
                         deckPile.add(chosenCard);
@@ -331,19 +325,19 @@ public class rules {
 
                 });
 
+                //Green Button Action
                 green.setOnMouseClicked(event -> {
                     ccolor.set("g");
-                    System.out.println(ccolor.get());
 
-                    // stage.close();
+
+                    //Remove All buttons from screen
                     MainScreen.playPane.getChildren().remove(green);
                     MainScreen.playPane.getChildren().remove(blue);
                     MainScreen.playPane.getChildren().remove(red);
                     MainScreen.playPane.getChildren().remove(yellow);
                     String newColor = ccolor.get();
-                    System.out.println("this is to seee whats going on: " + newColor);
-//                System.out.println("are you working?");
 
+                    //Check for a pick up 4 and colorchange
                     if (charSplit[0].equals("13")) {
                         System.out.println("+4");
                         deckPile.add(chosenCard);
@@ -361,6 +355,7 @@ public class rules {
                                 MainScreen.plus2CardsP1();
                             }
                         }
+                        // Check for just ColorChange
                     }else if(charSplit[0].equals("14")) {
                         System.out.println("CC");
                         deckPile.add(chosenCard);
@@ -381,19 +376,20 @@ public class rules {
 
                 });
 
+                //Yellow Button Action
                 yellow.setOnMouseClicked(event -> {
                     ccolor.set("y");
                     System.out.println(ccolor.get());
 
-                    // stage.close();
+                    //Remove All buttons from screen
                     MainScreen.playPane.getChildren().remove(green);
                     MainScreen.playPane.getChildren().remove(blue);
                     MainScreen.playPane.getChildren().remove(red);
                     MainScreen.playPane.getChildren().remove(yellow);
                     String newColor = ccolor.get();
                     System.out.println("this is to seee whats going on: " + newColor);
-//                System.out.println("are you working?");
 
+                    //Check for a pick up 4 and colorchange
                     if (charSplit[0].equals("13")) {
                         System.out.println("+4");
                         deckPile.add(chosenCard);
@@ -411,6 +407,7 @@ public class rules {
                                 MainScreen.plus2CardsP1();
                             }
                         }
+                     // Check for just ColorChange
                     }else if(charSplit[0].equals("14")) {
                         System.out.println("CC");
                         deckPile.add(chosenCard);
@@ -521,10 +518,6 @@ public class rules {
         }
 
     }
-        //instructions.setLayoutX(image.getWidth()*.66);
-      //  instructions.setLayoutY(image.getHeight()*.85);
-     //   instructions.setStyle("-fx-background-color: linear-gradient(#ff9500, #be2d00); -fx-background-radius: 50;-fx-background-insets: 0;-fx-text-fill: white;");
-     //   instructions.setMinSize(100, 50);
 
 
 }
