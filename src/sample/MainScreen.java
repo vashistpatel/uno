@@ -213,18 +213,11 @@ public class MainScreen extends Application {
         score.setMinSize(100, 50);
     }
 
-
     // Removes the cards once played from player 1's hand
-    public static Runnable updatePlayer1withoutRemove = () -> rules.updatePlayer1();
-
-    // Removes the cards once played from player 1's hand
-    public static Runnable updatePlayer2withoutRemove = () -> rules.updatePlayer2();
-
-    // Removes the cards once played from player 1's hand
-    public static Runnable updatePlayer1 = () -> rules.UpdatePlayer1();
+    public static Runnable updatePlayer1 = () -> rules.updatePlayer1();
 
     // Removes the cards once played from player 2's hand
-    public static Runnable updatePlayer2 = () -> rules.UpdatePlayer2();
+    public static Runnable updatePlayer2 = () -> rules.updatePlayer2();
 
     // Updates the played cards pile with the cards that are played
     static Runnable updatePane = () -> deckPile.getLast();
@@ -264,13 +257,17 @@ public class MainScreen extends Application {
         while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
             if(rules.whoGoesFirst==true){
                 player1Move();
-                System.out.println(Player.playerHand.size());
-                //player2Move();
                 if(Player.playerHand.size() == 0){Platform.runLater(callP1);}
+                System.out.println(Player.playerHand.size());
+                player2Move();
+                if(Player.computerHand.size() == 0){Platform.runLater(callP2);}
+
             }else{
                 player2Move();
-                //player1Move();
                 if(Player.computerHand.size() == 0){Platform.runLater(callP2);}
+                player1Move();
+                if(Player.playerHand.size() == 0){Platform.runLater(callP1);}
+
             }
         }
 
@@ -288,10 +285,10 @@ public class MainScreen extends Application {
 
     //update hand after card is drawn
     public static void UpdateAfterDrawCardP1(){
-        Platform.runLater(updatePlayer1withoutRemove);
+        Platform.runLater(updatePlayer1);
     }
     public static void UpdateAfterDrawCardP2(){
-        Platform.runLater(updatePlayer2withoutRemove);
+        Platform.runLater(updatePlayer2);
     }
 
     // takes player input and makes move
@@ -301,10 +298,23 @@ public class MainScreen extends Application {
         userInput.clear();
         //button for entering player input
         while (count ==0){
-            makeMove.setOnMousePressed(event -> {
-                Player.playerChooseCard(playerHand, computerHand, mainPile, x /*, t*/,Integer.parseInt(userInput.getText()));
-                count=1;
-            });
+            if(rules.whoGoesFirst==true) {
+                makeMove.setOnMousePressed(event -> {
+                    Platform.runLater(updatePlayer2);
+                    Platform.runLater(updatePlayer1);
+                    Platform.runLater(updatePane);
+                    rules.whoGoesFirst=false;
+                    count = 1;
+                });
+            }else{
+                makeMove.setOnMousePressed(event -> {
+                    Platform.runLater(updatePlayer1);
+                    Platform.runLater(updatePlayer2);
+                    Platform.runLater(updatePane);
+                    rules.whoGoesFirst=true;
+                    count = 1;
+                });
+            }
         }
         count = 0;
     }
