@@ -91,11 +91,11 @@ public static void updatePlayer1(){//Without the .remove function
                 cardAction(playerhand,computerHand,chosenCard,playerVal);
 
                 //Update cards on screen
-                if(playerVal==1){
+                /*(if(playerVal==1){
                     Platform.runLater(MainScreen.updatePlayer1);
                 }else if(playerVal ==2){
                     Platform.runLater(MainScreen.updatePlayer2);
-                }
+                }*/
 
             }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
                 int buttonSquareSize = 50;
@@ -183,13 +183,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    if(playerVal==1){
+                    /*if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }
+                    }*/
 
                 });
 
@@ -234,13 +234,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    if(playerVal==1){
+                    /*if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }
+                    }*/
 
                 });
 
@@ -337,13 +337,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    if(playerVal==1){
+                    /*if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }
+                    }*/
 
                 });
 
@@ -355,7 +355,7 @@ public static void updatePlayer1(){//Without the .remove function
             }
 
             //Switch player's turn
-            whoGoesFirst = !whoGoesFirst;
+          //  whoGoesFirst = !whoGoesFirst;
         }
     }
     public static void colourChange(String colour, ArrayList<String> deckPile,int deckSize ){
