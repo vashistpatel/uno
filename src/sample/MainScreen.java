@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,6 +20,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static sample.Player.computerHand;
+import static sample.Player.playerHand;
 
 public class MainScreen extends Application {
     //initializing pane
@@ -48,7 +52,7 @@ public class MainScreen extends Application {
     public static boolean turnChecker = true;
     public static int count= 0;
     //keeps track of cards that have been played
-    static ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(), deckPile.Pile(), Player.playerHand, Player.computerHand);
+    static ArrayList<String> mainPile = deckPile.initializePile(Player.PlayingCards(), deckPile.Pile(), playerHand, computerHand);
 
 
     @Override
@@ -78,8 +82,8 @@ public class MainScreen extends Application {
 
             playPane.getChildren().addAll(pile);
 
-            Player.playerHand();
-            Player.computerHand();
+            playerHand();
+            computerHand();
 
             Platform.runLater(updateP1);
             Platform.runLater(updateP2);
@@ -214,12 +218,17 @@ public class MainScreen extends Application {
     }
 
 
+    // Removes the cards once played from player 1's hand
+    public static Runnable updatePlayer1withoutRemove = () -> rules.updatePlayer1();
 
     // Removes the cards once played from player 1's hand
-    public static Runnable updatePlayer1 = () -> rules.updatePlayer1();
+    public static Runnable updatePlayer2withoutRemove = () -> rules.updatePlayer2();
+
+    // Removes the cards once played from player 1's hand
+    public static Runnable updatePlayer1 = () -> rules.UpdatePlayer1();
 
     // Removes the cards once played from player 2's hand
-    public static Runnable updatePlayer2 = () -> rules.updatePlayer2();
+    public static Runnable updatePlayer2 = () -> rules.UpdatePlayer2();
 
     // Updates the played cards pile with the cards that are played
     static Runnable updatePane = () -> deckPile.getLast();
@@ -256,20 +265,16 @@ public class MainScreen extends Application {
 //        Platform.runLater(callP2);
 
         //Changing player turns
-        while(Player.playerHand.size()>0 && Player.computerHand.size()>0){
+        while(playerHand.size()>0 && computerHand.size()>0){
             if(rules.whoGoesFirst==true){
                 player1Move();
-                if(Player.playerHand.size() == 0){Platform.runLater(callP1);}
-                System.out.println(Player.playerHand.size());
-                player2Move();
-                if(Player.computerHand.size() == 0){Platform.runLater(callP2);}
-
+                System.out.println(playerHand.size());
+                //player2Move();
+                if(playerHand.size() == 0){Platform.runLater(callP1);}
             }else{
                 player2Move();
-                if(Player.computerHand.size() == 0){Platform.runLater(callP2);}
-                player1Move();
-                if(Player.playerHand.size() == 0){Platform.runLater(callP1);}
-
+                //player1Move();
+                if(computerHand.size() == 0){Platform.runLater(callP2);}
             }
         }
 
@@ -287,10 +292,10 @@ public class MainScreen extends Application {
 
     //update hand after card is drawn
     public static void UpdateAfterDrawCardP1(){
-        Platform.runLater(updatePlayer1);
+        Platform.runLater(updatePlayer1withoutRemove);
     }
     public static void UpdateAfterDrawCardP2(){
-        Platform.runLater(updatePlayer2);
+        Platform.runLater(updatePlayer2withoutRemove);
     }
 
     // takes player input and makes move
@@ -304,9 +309,17 @@ public class MainScreen extends Application {
                 Player.playerChooseCard(playerHand, computerHand, mainPile, x /*, t*/,Integer.parseInt(userInput.getText())-1);
                 count=1;
             });
+            userInput.setOnKeyPressed(e->{
+                if(e.getCode() == KeyCode.ENTER){
+                    Player.playerChooseCard(playerHand, computerHand, mainPile, x /*, t*/,Integer.parseInt(userInput.getText())-1);
+                    count =1;
+                }
+
+            });
         }
         count = 0;
     }
+
 
     //Move for player one
     public static void player1Move(){
@@ -328,7 +341,7 @@ public class MainScreen extends Application {
         System.out.println("Deck:"+ deckPile.Pile());
         pile.setDisable(false);
         //get player input and make move
-        checkInput(Player.playerHand, Player.computerHand,mainPile,1 /*, newTime*/);
+        checkInput(playerHand, computerHand,mainPile,1 /*, newTime*/);
 
 
         /*This is if we need it for the future
@@ -336,13 +349,11 @@ public class MainScreen extends Application {
             Platform.runLater(updatePlayer1);
         }*/
         //output to terminal
-        System.out.println("Player Hand: "+ Player.playerHand);
+        System.out.println("Player Hand: "+ playerHand);
         System.out.println("Deck: "+ deckPile.Pile());
         pile.setDisable(true);
     }
     // move for player two
-
-
     public static void player2Move() {
         //start timer thread
 //        timer newTime2 = new timer(2);
@@ -362,10 +373,10 @@ public class MainScreen extends Application {
         Platform.runLater(callTD);
         System.out.println("-------Player2-----------");
         System.out.println("Deck:"+ deckPile.Pile());
-        System.out.println("Computer Hand: " + Player.computerHand);
+        System.out.println("Computer Hand: " + computerHand);
         pile.setDisable(false);
         //player input and make move
-        checkInput(Player.computerHand, Player.playerHand,mainPile,2 /*, newTime2*/);
+        checkInput(computerHand, playerHand,mainPile,2 /*, newTime2*/);
 
         /*This is if we need it for the future
         if (Player.chosen_card != ""){
@@ -373,7 +384,7 @@ public class MainScreen extends Application {
         }*/
 
         // print output to terminal
-        System.out.println("Computer Hand: " + Player.computerHand);
+        System.out.println("Computer Hand: " + computerHand);
         pile.setDisable(true);
     }
     //Runnable to display timer on Mainscreen
@@ -381,8 +392,8 @@ public class MainScreen extends Application {
         @Override
         public void run() {
             //System.out.println("Do i get printed at all???");
-             //TimeDisplay.TimeDisplay2(timer.secs);
-             playerDisplay.playerDisplay2(turnChecker);
+            //TimeDisplay.TimeDisplay2(timer.secs);
+            playerDisplay.playerDisplay2(turnChecker);
 
         }
     };

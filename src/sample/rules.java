@@ -19,64 +19,139 @@ public class rules {
     public static boolean whoGoesFirst = deck.checkTurn();
     public static int removal ;
 
-//    public static void p2timer(int i){
+    public static void UpdatePlayer1(){
+        if(Player.playerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.player1Hand.remove(removal);
+
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i,new ImageView("/CARDS/"+ Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x+=50;
+            }
+        }else{
+
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.player1Hand.remove(removal);
+
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x += 100;
+            }
+        }
+
+    }
+    //    public static void p2timer(int i){
 //        String x = String.valueOf(i);
 //        Label label = new Label(x);
 //        MainScreen.playPane.getChildren().addAll((label));
 //
 //    }
+    public static void updatePlayer1(){//Without the .remove function
+        if(Player.playerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x += 50;
 
 
+            }
+        }else{
 
-public static void updatePlayer1(){//Without the .remove function
-    int increment;
-    if(Player.playerHand.size()>7){
-        increment = 50;
-    }else {
-        increment = 100;
+            MainScreen.playPane.getChildren().removeAll(player1Hand);
+            Player.x = 0;
+            for(int i = 0; i < Player.playerHand.size(); i++) {
+                player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
+                player1Hand.get(i).setFitHeight(120);
+                player1Hand.get(i).setFitWidth(85);
+                player1Hand.get(i).setX(Player.x);
+                player1Hand.get(i).setY(300);
+
+                MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
+                Player.x += 100;
+            }
+        }
+
     }
-    MainScreen.playPane.getChildren().removeAll(player1Hand);
-    Player.x = 0;
-    for(int i = 0; i < Player.playerHand.size(); i++) {
-        player1Hand.set(i, new ImageView("/CARDS/" + Player.playerHand.get(i)));
-        player1Hand.get(i).setFitHeight(120);
-        player1Hand.get(i).setFitWidth(85);
-        player1Hand.get(i).setX(Player.x);
-        player1Hand.get(i).setY(300);
-        /*
-        final int temp = i;
-        player1Hand.get(i).setOnMouseClicked (event -> {
-            Player.playerChooseCard(Player.playerHand, Player.computerHand, MainScreen.mainPile, 1, temp);
-            System.out.println("Player 1 Move");
-        });*/
-        MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
-        Player.x += increment;
-    }
-}
+    public static void UpdatePlayer2(){
+        if(Player.computerHand.size()>7){
+            MainScreen.playPane.getChildren().removeAll(player2Hand);
+            player2Hand.remove(removal);
+            Player.x = 0;
+            for (int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
 
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x += 50;
+            }
+        }else {
+
+
+            MainScreen.playPane.getChildren().removeAll(player2Hand);
+            player2Hand.remove(removal);
+            Player.x = 0;
+            for (int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
+
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x += 100;
+            }
+        }
+
+    }
     public static void updatePlayer2(){//Without the .remove function
         MainScreen.playPane.getChildren().removeAll(player2Hand);
         Player.x = 0;
-        int increment;
         if(Player.computerHand.size()>7){
-            increment = 50;
-        }else {
-            increment = 100;
-        }
-        for(int i = 0; i < Player.computerHand.size(); i++) {
-            player2Hand.set(i,new ImageView("/CARDS/"+ Player.computerHand.get(i)));
-            player2Hand.get(i).setFitHeight(120);
-            player2Hand.get(i).setFitWidth(85);
-            player2Hand.get(i).setX(Player.x);
-            player2Hand.get(i).setY(20);
-            /*
-            final int temp = i;
-            player2Hand.get(i).setOnMouseClicked (event -> {
-                Player.playerChooseCard(Player.computerHand, Player.playerHand, MainScreen.mainPile, 2, temp);
-                System.out.println("Player 2 Move");
-            });*/
-            MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
-            Player.x+=increment;
+            for(int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i,new ImageView("/CARDS/"+ Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
+
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x+=50;
+            }
+        }else{
+            for(int i = 0; i < Player.computerHand.size(); i++) {
+                player2Hand.set(i, new ImageView("/CARDS/" + Player.computerHand.get(i)));
+                player2Hand.get(i).setFitHeight(120);
+                player2Hand.get(i).setFitWidth(85);
+                player2Hand.get(i).setX(Player.x);
+                player2Hand.get(i).setY(20);
+
+                MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
+                Player.x += 100;
+            }
         }
 
     }
@@ -332,7 +407,7 @@ public static void updatePlayer1(){//Without the .remove function
                                 MainScreen.plus2CardsP1();
                             }
                         }
-                     // Check for just ColorChange
+                        // Check for just ColorChange
                     }else if(charSplit[0].equals("14")) {
                         System.out.println("CC");
                         deckPile.add(chosenCard);
@@ -360,8 +435,8 @@ public static void updatePlayer1(){//Without the .remove function
                 whoGoesFirst = !whoGoesFirst;
             }
 
+            //Switch player's turn
             whoGoesFirst = !whoGoesFirst;
-
         }
     }
     public static void colourChange(String colour, ArrayList<String> deckPile,int deckSize ){
