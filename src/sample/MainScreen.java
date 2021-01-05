@@ -213,6 +213,8 @@ public class MainScreen extends Application {
         score.setMinSize(100, 50);
     }
 
+
+
     // Removes the cards once played from player 1's hand
     public static Runnable updatePlayer1 = () -> rules.updatePlayer1();
 
@@ -298,23 +300,10 @@ public class MainScreen extends Application {
         userInput.clear();
         //button for entering player input
         while (count ==0){
-            if(rules.whoGoesFirst==true) {
-                makeMove.setOnMousePressed(event -> {
-                    Platform.runLater(updatePlayer2);
-                    Platform.runLater(updatePlayer1);
-                    Platform.runLater(updatePane);
-                    rules.whoGoesFirst=false;
-                    count = 1;
-                });
-            }else{
-                makeMove.setOnMousePressed(event -> {
-                    Platform.runLater(updatePlayer1);
-                    Platform.runLater(updatePlayer2);
-                    Platform.runLater(updatePane);
-                    rules.whoGoesFirst=true;
-                    count = 1;
-                });
-            }
+            makeMove.setOnMousePressed(event -> {
+                Player.playerChooseCard(playerHand, computerHand, mainPile, x /*, t*/,Integer.parseInt(userInput.getText())-1);
+                count=1;
+            });
         }
         count = 0;
     }
@@ -352,6 +341,8 @@ public class MainScreen extends Application {
         pile.setDisable(true);
     }
     // move for player two
+
+
     public static void player2Move() {
         //start timer thread
 //        timer newTime2 = new timer(2);

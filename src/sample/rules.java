@@ -25,6 +25,9 @@ public class rules {
 //        MainScreen.playPane.getChildren().addAll((label));
 //
 //    }
+
+
+
 public static void updatePlayer1(){//Without the .remove function
     int increment;
     if(Player.playerHand.size()>7){
@@ -40,15 +43,17 @@ public static void updatePlayer1(){//Without the .remove function
         player1Hand.get(i).setFitWidth(85);
         player1Hand.get(i).setX(Player.x);
         player1Hand.get(i).setY(300);
+        /*
         final int temp = i;
         player1Hand.get(i).setOnMouseClicked (event -> {
             Player.playerChooseCard(Player.playerHand, Player.computerHand, MainScreen.mainPile, 1, temp);
             System.out.println("Player 1 Move");
-        });
+        });*/
         MainScreen.playPane.getChildren().addAll(player1Hand.get(i));
         Player.x += increment;
     }
 }
+
     public static void updatePlayer2(){//Without the .remove function
         MainScreen.playPane.getChildren().removeAll(player2Hand);
         Player.x = 0;
@@ -64,11 +69,12 @@ public static void updatePlayer1(){//Without the .remove function
             player2Hand.get(i).setFitWidth(85);
             player2Hand.get(i).setX(Player.x);
             player2Hand.get(i).setY(20);
+            /*
             final int temp = i;
             player2Hand.get(i).setOnMouseClicked (event -> {
                 Player.playerChooseCard(Player.computerHand, Player.playerHand, MainScreen.mainPile, 2, temp);
                 System.out.println("Player 2 Move");
-            });
+            });*/
             MainScreen.playPane.getChildren().addAll(player2Hand.get(i));
             Player.x+=increment;
         }
@@ -91,11 +97,11 @@ public static void updatePlayer1(){//Without the .remove function
                 cardAction(playerhand,computerHand,chosenCard,playerVal);
 
                 //Update cards on screen
-                /*(if(playerVal==1){
+                if(playerVal==1){
                     Platform.runLater(MainScreen.updatePlayer1);
                 }else if(playerVal ==2){
                     Platform.runLater(MainScreen.updatePlayer2);
-                }*/
+                }
 
             }else if (chosenCardSplit[0].charAt(0) == 'M' ) {
                 int buttonSquareSize = 50;
@@ -183,13 +189,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    /*if(playerVal==1){
+                    if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }*/
+                    }
 
                 });
 
@@ -234,13 +240,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    /*if(playerVal==1){
+                    if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }*/
+                    }
 
                 });
 
@@ -337,13 +343,13 @@ public static void updatePlayer1(){//Without the .remove function
                     }
 
                     //Update cards on screen
-                    /*if(playerVal==1){
+                    if(playerVal==1){
                         Platform.runLater(MainScreen.updatePlayer1);
                         Platform.runLater(MainScreen.updatePane);
                     }else if(playerVal ==2){
                         Platform.runLater(MainScreen.updatePlayer2);
                         Platform.runLater(MainScreen.updatePane);
-                    }*/
+                    }
 
                 });
 
@@ -354,8 +360,8 @@ public static void updatePlayer1(){//Without the .remove function
                 whoGoesFirst = !whoGoesFirst;
             }
 
-            //Switch player's turn
-          //  whoGoesFirst = !whoGoesFirst;
+            whoGoesFirst = !whoGoesFirst;
+
         }
     }
     public static void colourChange(String colour, ArrayList<String> deckPile,int deckSize ){
